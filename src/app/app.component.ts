@@ -13,27 +13,43 @@ export class AppComponent {
     {
       title: 'Register',
       url: '/register',
-      icon: 'list'
+      icon: 'list',
+      chileMenu:[]
     },
     {
       title: 'Login',
       url: '/login',
-      icon: 'list'
+      icon: 'list',
+      chileMenu:[]
     },
     {
       title: 'Home',
       url: '/home',
-      icon: 'home'
+      icon: 'home',
+      chileMenu:[]
     },
     {
       title: 'List',
       url: '/list',
-      icon: 'list'
+      icon: 'list',
+      chileMenu:[]
     },
     {
       title: 'Policy',
       url: '/policy',
-      icon: 'list'
+      icon: 'list',
+      chileMenu:[
+        {
+          title: 'List',
+          url: '/policy/policy-list',
+          icon: 'list',
+        },
+        {
+          title: 'Add',
+          url: '/policy/policy-add',
+          icon: 'list',
+        },
+      ]
     }
   ];
 
