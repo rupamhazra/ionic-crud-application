@@ -2,8 +2,18 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+/************* Local ********************/
+// export const environment = {
+//   production: false,
+//   apiEndpoint: 'http://192.168.24.208/ionic-api/api/',
+//   imageURL: 'http://192.168.24.208/ionic-api/media/'
+// };
+
+/************* Staging ********************/
 export const environment = {
-  production: false
+  production: false,
+  apiEndpoint: 'http://166.62.54.122/ionic-api/api/',
+  imageURL: 'http://166.62.54.122/ionic-api/media/'
 };
 
 /*

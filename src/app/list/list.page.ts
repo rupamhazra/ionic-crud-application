@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { ToasterService } from '../commonservices/toaster.service';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +9,67 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  form: FormGroup;
+  visibleKey: boolean;
+  policies:any;
+  selectedPolicy:  {};
+  constructor(
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private toasterService: ToasterService
+    ) {}
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      number: ['', Validators.required],
+      amount: ['', Validators.required],
+    });
+    this.readPolicies();
+    
   }
 
-  ngOnInit() {
+  readPolicies()
+  {
+    this.apiService.readPolicies().subscribe( res => {
+      this.policies = res.result;
+      console.log(this.policies);
+    },
+    error => {
+      console.log("error::::"+error);
+      this.toasterService.showToast(error.error.msg,2000)
+    }
+    )
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  createOrUpdatePolicy(){
+    console.log('check')
+    this.apiService.createPolicy(this.form.value).subscribe(res=>{
+      console.log("Policy created, ", res);
+      this.readPolicies();
+    },
+    error => {
+      console.log("error::::"+error);
+      this.toasterService.showToast(error.error.msg,2000)
+    }
+    );
+    
+
+  }
+
+  selectPolicy(policy){
+    this.selectedPolicy = policy;
+  }
+
+  deletePolicy(id){
+    this.apiService.deletePolicy(id,null).subscribe(
+      res=>{
+      console.log("Policy deleted, ", res);
+      this.toasterService.showToast(res.msg,2000)
+      this.readPolicies();
+    },
+    error => {
+      console.log("error::::"+error);
+      this.toasterService.showToast(error.error.msg,2000)
+    }
+    );
+  }
 }
