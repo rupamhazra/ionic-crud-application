@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>policy-edit</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Edit Policy Details
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
-</ion-content>
+<ion-content color="light">
+    
+    <form [formGroup]="form" novalidate>
+      <ion-grid>
+        <ion-row  justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div padding *ngIf="policyDetails !=undefined">
+              <ion-item margin>
+                
+                <ion-input type="text" formControlName="number" placeholder="Enter Number" name="number" [(ngModel)]="policyDetails.number" required></ion-input>
+              </ion-item>
+              <ion-item margin>
+             
+                <ion-input type="text" formControlName="amount" placeholder="Enter Amount" name="amount" [(ngModel)]="policyDetails.amount" required></ion-input>
+              </ion-item>
+            </div>
+            <div padding >
+              <ion-button size="large" expand="block" type="button" [disabled]="!form.valid" (click)="updatePolicy()">Update</ion-button>
+            </div>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-content>

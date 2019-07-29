@@ -31,6 +31,9 @@ export class ApiService {
   createPolicy(data:any): Observable<any>{
     return this.http.post(environment.apiEndpoint +'create.php', data);
   }
+  getPolicy(id:number): Observable<any>{
+    return this.http.get(environment.apiEndpoint +'read.php?id='+id);   
+  }
   updatePolicy(data: any): Observable<any>{
     return this.http.put(environment.apiEndpoint +'update.php', data);   
   }

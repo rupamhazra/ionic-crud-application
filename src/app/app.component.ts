@@ -29,15 +29,8 @@ export class AppComponent {
       chileMenu:[]
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list',
-      chileMenu:[]
-    },
-    {
       title: 'Policy',
-      url: '/policy',
-      icon: 'list',
+      class: 'child-active',
       chileMenu:[
         {
           title: 'List',
@@ -63,6 +56,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      //console.log('window.location==='+window.location);
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

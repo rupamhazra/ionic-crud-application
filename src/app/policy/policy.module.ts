@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { PolicyRoutingModule } from './policy-routing.module';
 import { PolicyPage } from './policy.page';
@@ -15,8 +15,10 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     PolicyRoutingModule,
+
   ],
   declarations: [PolicyPage,PolicyAddPage,PolicyListPage,PolicyEditPage]
 })
