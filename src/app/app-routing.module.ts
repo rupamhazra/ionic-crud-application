@@ -23,6 +23,13 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
+  { 
+    path: 'policy', 
+    loadChildren: './policy/policy.module#PolicyPageModule' 
+  },
+  // { path: 'policy-add', loadChildren: './policy/policy-add/policy-add.module#PolicyAddPageModule' },
+  // { path: 'policy-list', loadChildren: './policy/policy-list/policy-list.module#PolicyListPageModule' },
+  // { path: 'policy-edit', loadChildren: './policy/policy-edit/policy-edit.module#PolicyEditPageModule' },
  
 ];
 

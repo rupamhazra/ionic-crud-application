@@ -55,6 +55,21 @@ export class ListPage implements OnInit {
 
   }
 
+  UpdatePolicy(){
+    console.log('update....')
+    this.apiService.createPolicy(this.form.value).subscribe(res=>{
+      console.log("Policy created, ", res);
+      this.readPolicies();
+    },
+    error => {
+      console.log("error::::"+error);
+      this.toasterService.showToast(error.error.msg,2000)
+    }
+    );
+    
+
+  }
+
   selectPolicy(policy){
     this.selectedPolicy = policy;
   }
