@@ -10,13 +10,13 @@
 </ion-header>
 
 
-<ion-content color="light">
+<ion-content color="light" *ngIf="visibleKey">
     
     <form [formGroup]="form" novalidate>
       <ion-grid>
         <ion-row  justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-            <div padding *ngIf="policyDetails !=undefined">
+            <div padding>
               <ion-item margin>
                 
                 <ion-input type="text" formControlName="number" placeholder="Enter Number" name="number" [(ngModel)]="policyDetails.number" required></ion-input>
@@ -33,4 +33,4 @@
         </ion-row>
       </ion-grid>
     </form>
-  </ion-content>
+</ion-content>

@@ -33,31 +33,31 @@
         </div>
       </ion-col>
     </ion-row>
-    
-    <ion-row *ngFor="let policy of policies">
-      <ion-col>
-        <div>
-          {{policy.id}}
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          {{policy.number}}
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          {{policy.amount}}
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-button (click)="editPolicy(policy.id)" size="small"><ion-icon name="create"></ion-icon></ion-button>
-          <ion-button (click)="deletePolicy(policy.id)" size="small"><ion-icon name="trash"></ion-icon></ion-button>
-          
-        </div>
-      </ion-col>
-  </ion-row>
-    
+    <div *ngIf="visibleKey">
+      <ion-row *ngFor="let policy of policies">
+        <ion-col>
+          <div>
+            {{policy.id}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            {{policy.number}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            {{policy.amount}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-button (click)="editPolicy(policy.id)" size="small"><ion-icon name="create"></ion-icon></ion-button>
+            <ion-button (click)="deletePolicy(policy.id)" size="small"><ion-icon name="trash"></ion-icon></ion-button>
+            
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>

@@ -13,7 +13,7 @@ import { LoadingService } from '../../commonservices/loading.service';
 })
 export class PolicyEditPage implements OnInit {
   form: FormGroup;
-  visibleKey: boolean;
+  visibleKey: boolean = false;
   policies:any;
   selectedPolicy:  {};
   policyId: number;
@@ -24,7 +24,7 @@ export class PolicyEditPage implements OnInit {
     private toasterService: ToasterService,
     private router: Router,
     private route: ActivatedRoute,
-    private loadingService : LoadingService,
+    public loadingService : LoadingService,
     ) {}
   ngOnInit() {
 
@@ -41,15 +41,23 @@ export class PolicyEditPage implements OnInit {
 
   readPolicy()
   {
-    this.loadingService.presentLoadingWithOptions();
+    //console.log("visibleKey ====="+this.visibleKey);
+    this.loadingService.present();
     this.apiService.getPolicy(this.policyId).subscribe( 
       res => {
       this.policyDetails = res.result;
-      console.log(this.policyDetails);
+      //console.log(this.policyDetails);
+      //console.log("visibleKey ====="+this.visibleKey);
+      this.loadingService.dismiss();
+      this.visibleKey = true;
       },
       error => {
         console.log("error::::"+error);
-        this.toasterService.showToast(error.error.msg,2000)
+        //this.loadingService.hideLoader();
+        this.loadingService.dismiss();
+        this.visibleKey = true;
+        this.toasterService.showToast(error.error.msg,2000);
+        
       }
     )
   }
