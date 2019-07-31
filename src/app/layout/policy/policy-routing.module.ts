@@ -7,15 +7,23 @@ import { PolicyEditPage } from './policy-edit/policy-edit.page';
 
 
 const routes: Routes = [
-   {
-    path: '',
-    redirectTo: 'policy-list',
-    pathMatch: 'full'
-  },
-  // {
-  //   path: 'policy',
-  //   component: PolicyPage
+  //  {
+  //   path: '',
+  //   redirectTo: 'policy-list',
+  //   pathMatch: 'full'
   // },
+  // // {
+  // //   path: 'policy',
+  // //   component: PolicyPage
+  // // },
+  // {
+  //   path: 'policy-list',
+  //   component: PolicyListPage
+  // },
+  {
+    path: '',
+    component: PolicyListPage
+  },
   {
     path: 'policy-list',
     component: PolicyListPage
