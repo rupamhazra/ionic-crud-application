@@ -27,7 +27,9 @@ export class LoginPage implements OnInit {
   loginUser(){
     this.apiService.loginService(this.form.value).subscribe(
       res=> {
-      console.log("res:::"+res.msg)
+      console.log("res:::"+res.msg);
+      localStorage.setItem('userDetails',JSON.stringify(res.result));
+
       this.toasterService.showToast(res.msg,2000)
       this.router.navigateByUrl('home');
     },
