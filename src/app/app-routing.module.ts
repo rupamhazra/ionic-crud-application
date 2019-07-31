@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full'
+  // },
   { 
     path: 'register',
     loadChildren: './auth/register/register.module#RegisterPageModule' 
@@ -24,13 +24,9 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   { 
-    path: 'policy', 
-    loadChildren: './policy/policy.module#PolicyPageModule' 
+    path: '', 
+    loadChildren: './layout/layout.module#LayoutPageModule' 
   },
-  // { path: 'policy-add', loadChildren: './policy/policy-add/policy-add.module#PolicyAddPageModule' },
-  // { path: 'policy-list', loadChildren: './policy/policy-list/policy-list.module#PolicyListPageModule' },
-  // { path: 'policy-edit', loadChildren: './policy/policy-edit/policy-edit.module#PolicyEditPageModule' },
- 
 ];
 
 @NgModule({

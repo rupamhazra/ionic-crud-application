@@ -34,8 +34,9 @@ export class ApiService {
   getPolicy(id:number): Observable<any>{
     return this.http.get(environment.apiEndpoint +'read.php?id='+id);   
   }
-  updatePolicy(data: any): Observable<any>{
-    return this.http.put(environment.apiEndpoint +'update.php', data);   
+  updatePolicyService(id:number, data: any): Observable<any>{
+    console.log('data',data)
+    return this.http.put(environment.apiEndpoint +'update.php?id='+id, data);   
   }
   deletePolicy(id: number,data:any): Observable<any>{
     return this.http.put(environment.apiEndpoint +'delete.php/?id='+id,data);

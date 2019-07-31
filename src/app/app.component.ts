@@ -34,12 +34,12 @@ export class AppComponent {
       chileMenu:[
         {
           title: 'List',
-          url: '/policy/policy-list',
+          url: '/layout/policy/policy-list',
           icon: 'list',
         },
         {
           title: 'Add',
-          url: '/policy/policy-add',
+          url: '/layout/policy/policy-add',
           icon: 'list',
         },
       ]
