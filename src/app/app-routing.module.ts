@@ -8,6 +8,10 @@ const routes: Routes = [
   //   pathMatch: 'full'
   // },
   { 
+    path: '', 
+    loadChildren: './layout/layout.module#LayoutPageModule' 
+  },
+  { 
     path: 'register',
     loadChildren: './auth/register/register.module#RegisterPageModule' 
   },
@@ -23,10 +27,7 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { 
-    path: '', 
-    loadChildren: './layout/layout.module#LayoutPageModule' 
-  },
+  
 ];
 
 @NgModule({
