@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from  "@angular/router";
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { ApiService } from '../../api.service';
-import { ToasterService } from '../../commonservices/toaster.service';
+import { LoginRegisterService } from '../../core/services/login-register.service';
+import { ToasterService } from '../../core/services/toaster.service';
+import { AuthenticationService } from '../../core/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,11 @@ import { ToasterService } from '../../commonservices/toaster.service';
 export class LoginPage implements OnInit {
   form: FormGroup;
   constructor(
-    private  apiService:  ApiService, 
+    private  loginRegisterService:  LoginRegisterService, 
     private  router:  Router,
     private formBuilder: FormBuilder,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private authService: AuthenticationService
 
   ) { }
   ngOnInit() {
@@ -25,13 +27,16 @@ export class LoginPage implements OnInit {
     });
   }
   loginUser(){
-    this.apiService.loginService(this.form.value).subscribe(
+    
+    this.loginRegisterService.loginService(this.form.value).subscribe(
       res=> {
       console.log("res:::"+res.msg);
-      localStorage.setItem('userDetails',JSON.stringify(res.result));
+      //localStorage.setItem('isUserLogged','true');
+      //localStorage.setItem('userDetails',JSON.stringify(res.result));
 
-      this.toasterService.showToast(res.msg,2000)
-      this.router.navigateByUrl('home');
+      this.toasterService.showToast(res.msg,2000);
+      //this.router.navigateByUrl('home');
+      this.authService.login(res.result);
     },
     error => {
       console.log("error::::"+error.error.msg);

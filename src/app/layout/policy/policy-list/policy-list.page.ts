@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../api.service';
+import { PolicyService } from '../../../core/services/policy.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { ToasterService } from '../../../commonservices/toaster.service';
-import { LoadingService } from '../../../commonservices/loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
+import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from  "@angular/router";
 
 @Component({
@@ -18,7 +18,7 @@ export class PolicyListPage implements OnInit {
   selectedPolicy:  {};
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
+    private policyService: PolicyService,
     private toasterService: ToasterService,
     public loadingService : LoadingService,
     private router: Router
@@ -32,7 +32,7 @@ export class PolicyListPage implements OnInit {
   readPolicies()
   {
     this.policies =[];
-    this.apiService.readPolicies().subscribe( 
+    this.policyService.readPolicies().subscribe( 
       res => {
       this.policies = res.result;
       console.log(this.policies);
@@ -57,7 +57,7 @@ export class PolicyListPage implements OnInit {
 
   deletePolicy(id){
     this.loadingService.present();
-    this.apiService.deletePolicy(id,null).subscribe(
+    this.policyService.deletePolicy(id,null).subscribe(
       res=>{
       console.log("Policy deleted, ", res);
       this.loadingService.dismiss();

@@ -7,14 +7,11 @@ const routes: Routes = [
       path: '',
       component: LayoutPage,   
       children: [
-        { path: '', redirectTo: 'policy' },
+        { path: '', redirectTo: 'dashboard' },
+        { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
         { path: 'policy', loadChildren: './policy/policy.module#PolicyPageModule' },
       ]
     },
-//   { path: 'policy', loadChildren: './policy/policy.module#PolicyPageModule' },
-//   { path: 'policy-add', loadChildren: './policy/policy-add/policy-add.module#PolicyAddPageModule' },
-//   { path: 'policy-edit', loadChildren: './policy/policy-edit/policy-edit.module#PolicyEditPageModule' },
-//   { path: 'policy-list', loadChildren: './policy/policy-list/policy-list.module#PolicyListPageModule' }
   ];
   
   @NgModule({

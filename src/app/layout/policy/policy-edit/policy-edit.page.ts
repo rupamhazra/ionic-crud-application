@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../api.service';
+import { PolicyService } from '../../../core/services/policy.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { ToasterService } from '../../../commonservices/toaster.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingService } from '../../../commonservices/loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
+import { ToasterService } from '../../../core/services/toaster.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class PolicyEditPage implements OnInit {
   policyDetails: any;
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
+    private policyService: PolicyService,
     private toasterService: ToasterService,
     private router: Router,
     private route: ActivatedRoute,
@@ -43,7 +43,7 @@ export class PolicyEditPage implements OnInit {
   {
     //console.log("visibleKey ====="+this.visibleKey);
     this.loadingService.present();
-    this.apiService.getPolicy(this.policyId).subscribe( 
+    this.policyService.getPolicy(this.policyId).subscribe( 
       res => {
       this.policyDetails = res.result;
       //console.log(this.policyDetails);
@@ -66,7 +66,7 @@ export class PolicyEditPage implements OnInit {
 
   updatePolicy(){
     console.log('update....')
-    this.apiService.updatePolicyService(this.policyId,this.form.value).subscribe(
+    this.policyService.updatePolicyService(this.policyId,this.form.value).subscribe(
       res=>{
       console.log("Policy updated, ", res);
       this.toasterService.showToast(res.msg,2000);

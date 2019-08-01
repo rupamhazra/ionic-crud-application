@@ -38,8 +38,23 @@
             </ion-menu-toggle>
           </ion-list>
         </div>
+        <div>
+          <ion-item *ngIf="logout_visible">
+            <ion-icon slot="start" name="log-out" color="warning"></ion-icon>
+            <ion-label (click)="logoutUser()" color="warning">
+                Logout
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="logout_visible == 'false'">
+              <ion-icon slot="start" name="log-in" color="warning"></ion-icon>
+              <ion-label (click)="logIn()" color="warning">
+                  Login
+              </ion-label>
+            </ion-item>
+        </div>
       </ion-content>
     </ion-menu>
+    
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

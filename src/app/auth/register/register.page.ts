@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from  "@angular/router";
-import { ApiService } from '../../api.service';
+import { LoginRegisterService } from '../../core/services/login-register.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { ToasterService } from '../../commonservices/toaster.service';
+import { ToasterService } from '../../core/services/toaster.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ import { ToasterService } from '../../commonservices/toaster.service';
 export class RegisterPage implements OnInit {
   form: FormGroup;
   constructor(
-    private  apiService:  ApiService, 
+    private  loginRegisterService:  LoginRegisterService, 
     private  router:  Router,
     private formBuilder: FormBuilder,
     private toasterService: ToasterService
@@ -26,7 +26,7 @@ export class RegisterPage implements OnInit {
     });
   }
   registerUser() {
-    this.apiService.registerService(this.form.value).subscribe(res => {
+    this.loginRegisterService.registerService(this.form.value).subscribe(res => {
       //We use the navigateByUrl() method of the Angular Router to navigate to a page by its URL.
       console.log(res)
       this.router.navigateByUrl('home'); 

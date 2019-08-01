@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../api.service';
+import { PolicyService } from '../../../core/services/policy.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
-import { ToasterService } from '../../../commonservices/toaster.service';
+import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from  "@angular/router";
 
 @Component({
@@ -16,7 +16,7 @@ export class PolicyAddPage implements OnInit {
   selectedPolicy:  {};
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
+    private policyService: PolicyService,
     private toasterService: ToasterService,
     private  router:  Router
     ) {}
@@ -30,7 +30,7 @@ export class PolicyAddPage implements OnInit {
   }
   addPolicy(){
     console.log('check')
-    this.apiService.createPolicy(this.form.value).subscribe(res=>{
+    this.policyService.createPolicy(this.form.value).subscribe(res=>{
       console.log("Policy created, ", res);
       this.toasterService.showToast(res.msg,2000)
       this.router.navigateByUrl('/policy/policy-list');
