@@ -20,6 +20,6 @@ import { IonicModule } from '@ionic/angular';
     PolicyRoutingModule,
 
   ],
-  declarations: [PolicyPage,PolicyAddPage,PolicyListPage,PolicyEditPage]
+  declarations: [PolicyPage]
 })
 export class PolicyPageModule {}

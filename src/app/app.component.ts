@@ -14,19 +14,8 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
   logout_visible:boolean = false
+  login_visible:boolean = false
   public appPages = [
-    // {
-    //   title: 'Register',
-    //   url: '/register',
-    //   icon: 'list',
-    //   chileMenu:[]
-    // },
-    // {
-    //   title: 'Login',
-    //   url: '/login',
-    //   icon: 'list',
-    //   chileMenu:[]
-    // },
     {
       title: 'Dashboard',
       url: '/dashboard',
@@ -72,10 +61,12 @@ export class AppComponent {
         if (state) {
           this.menuCtrl.enable(true);
           this.logout_visible = true;
+          this.login_visible = false;
           this.router.navigateByUrl('/dashboard');
         } else {
           
           this.logout_visible = false;
+          this.login_visible = true;
           this.router.navigateByUrl('/login');
         }
       });

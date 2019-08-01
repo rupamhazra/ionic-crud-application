@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PolicyService } from '../../../core/services/policy.service';
-import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from  "@angular/router";
 
@@ -41,11 +41,4 @@ export class PolicyAddPage implements OnInit {
     }
     );
   }
-
-
-
-
-
-
-
 }
