@@ -3,6 +3,8 @@ import { PolicyService } from '../../../core/services/policy.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from  "@angular/router";
+import { FileUploader, FileLikeObject } from  'ng2-file-upload';
+import { concat } from  'rxjs';
 
 @Component({
   selector: 'app-policy-add',
@@ -14,16 +16,21 @@ export class PolicyAddPage implements OnInit {
   visibleKey: boolean;
   policies:any;
   selectedPolicy:  {};
+  public fileUploader: FileUploader = new FileUploader({});
+  public hasBaseDropZoneOver: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private policyService: PolicyService,
     private toasterService: ToasterService,
-    private  router:  Router
+    private  router:  Router,
+    //private uploadingService: UploadingService
+    
     ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
       number: ['', Validators.required],
       amount: ['', Validators.required],
+      
     });
     
     
@@ -41,4 +48,6 @@ export class PolicyAddPage implements OnInit {
     }
     );
   }
+
+  
 }

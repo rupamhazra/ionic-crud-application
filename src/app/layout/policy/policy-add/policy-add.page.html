@@ -8,14 +8,17 @@
       <ion-row  justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
-            <ion-item margin>
-            <!-- <ion-label>Number</ion-label> -->
-              <ion-input type="text" formControlName="number" placeholder="Enter Number" name="number" required></ion-input>
-            </ion-item>
-            <ion-item margin>
-            <!-- <ion-label>Amount</ion-label> -->
-              <ion-input type="text" formControlName="amount" placeholder="Enter Amount" name="amount" required></ion-input>
-            </ion-item>
+              <ion-item margin>
+              <!-- <ion-label>Number</ion-label> -->
+                <ion-input type="text" formControlName="number" placeholder="Enter Number" name="number" required></ion-input>
+              </ion-item>
+              <ion-item margin>
+              <!-- <ion-label>Amount</ion-label> -->
+                <ion-input type="text" formControlName="amount" placeholder="Enter Amount" name="amount" required></ion-input>
+              </ion-item>
+              <ion-item margin>
+                  <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
+              </ion-item>
           </div>
           <div padding>
             <ion-button size="large" expand="block" type="button" [disabled]="!form.valid" (click)="addPolicy()">Add</ion-button>

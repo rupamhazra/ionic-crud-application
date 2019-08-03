@@ -31,4 +31,7 @@ export class PolicyService {
   deletePolicy(id: number,data:any): Observable<any>{
     return this.http.put(environment.apiEndpoint +'delete.php/?id='+id,data);
   }
+  uploadFormData(formData) : Observable<any>{
+    return this.http.post(environment.apiEndpoint + 'create.php', formData);
+  }
 }

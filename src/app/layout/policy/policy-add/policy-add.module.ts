@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 import { PolicyAddPage } from './policy-add.page';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    IonicModule
+    IonicModule,
+    FileUploadModule
   ],
   declarations: [PolicyAddPage]
 })
