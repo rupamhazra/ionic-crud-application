@@ -1,5 +1,35 @@
 
+<ion-content padding>
+  <h1>Get Location</h1>
 
+  <ion-button (click)="getGeolocation()">
+    Get Location
+  </ion-button>
+  <ion-button (click)="watchLocation()">
+    Watch Location Updates
+  </ion-button>
+  <ion-button (click)="stopLocationWatch()">
+    Stop Location Watch
+  </ion-button>
+
+  <div *ngIf="geoLatitude">
+    <p>Latitude : {{geoLatitude}}</p>
+    <p>Longitude : {{geoLongitude}}</p>
+    <p>Accuracy : {{geoAccuracy}}</p>
+    <p class="address-text">
+
+      <span class="watch-text" *ngIf="isWatching; else notWatching">
+        Watching Location
+      </span>
+      <ng-template #notWatching>
+        Location Watch Stopped
+      </ng-template>
+
+      <br>Address : {{geoAddress }}
+    </p>
+  </div>
+
+</ion-content>
 
 <ion-content color="light">
     
@@ -16,12 +46,49 @@
               <!-- <ion-label>Amount</ion-label> -->
                 <ion-input type="text" formControlName="amount" placeholder="Enter Amount" name="amount" required></ion-input>
               </ion-item>
-              <ion-item margin>
-                  <input type="file" accept="image/*" ng2FileSelect [uploader]="fileUploader" multiple />
-              </ion-item>
+
+              <!-- <h3 *ngIf="images.length == 0" text-center>Please Select Image!</h3>
+              <ion-list>
+                <ion-item *ngFor="let img of images; index as pos" text-wrap>
+                  <ion-thumbnail slot="start">
+                    <ion-img [src]="img.path"></ion-img>
+                  </ion-thumbnail>
+                  <ion-label>
+                    {{ img.name }}
+                  </ion-label>
+                  <ion-button slot="end" fill="clear" (click)="startUpload(img)">
+                    <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+                  </ion-button>
+                  <ion-button slot="end" fill="clear" (click)="deleteImage(img, pos)">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ion-list> -->
+
+             
+                  <!-- <img *ngIf="!image.path" src="assets/no-image.jpeg"/> -->
+                  <!-- <img *ngIf="image.path" src="{{image.path}}"/>
+                  <ion-img [src]="image.path"></ion-img> -->
+                  <div padding>
+                    <img *ngIf="!image" src="assets/no-image.png"/>
+                    <ion-img [src]="image.path" *ngIf="image"></ion-img>
+                    <ion-button color="medium" expand="block" size="large" (click)="selectImage()">
+                      <ion-icon slot="icon-only" name="camera"></ion-icon>
+                    </ion-button>
+                    <!-- <ion-button slot="end" fill="clear" (click)="startUpload(image)" *ngIf="image">
+                        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+                    </ion-button> -->
+                  </div>
+              
+
+              <!-- <ion-toolbar color="primary">
+                  <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
+                    <ion-icon slot="start" name="camera"></ion-icon>
+                    Select Image</ion-button>
+              </ion-toolbar> -->
           </div>
-          <div padding>
-            <ion-button size="large" expand="block" type="button" [disabled]="!form.valid" (click)="addPolicy()">Add</ion-button>
+          <div padding style="margin-top: 30px;">
+            <ion-button size="large" expand="block" type="button" [disabled]="!form.valid" (click)="startUpload(image)">Add</ion-button>
           </div>
           </ion-col>
       </ion-row>

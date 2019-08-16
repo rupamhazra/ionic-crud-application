@@ -8,6 +8,8 @@ import { AuthenticationService } from './core/services/authentication.service';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -15,6 +17,7 @@ import { MenuController } from '@ionic/angular';
 export class AppComponent {
   logout_visible:boolean = false
   login_visible:boolean = false
+  public name:any
   public appPages = [
     {
       title: 'Dashboard',
@@ -46,7 +49,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private authenticationService: AuthenticationService,
     private router: Router,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private storage: Storage
   ) {
     this.initializeApp();
   }
@@ -62,6 +66,9 @@ export class AppComponent {
           this.menuCtrl.enable(true);
           this.logout_visible = true;
           this.login_visible = false;
+          this.storage.get('USER_INFO').then((val) => {
+            this.name = val.name
+          });
           this.router.navigateByUrl('/dashboard');
         } else {
           

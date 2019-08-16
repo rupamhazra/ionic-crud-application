@@ -10,7 +10,7 @@ export class LoadingService {
   present() {
     this.isLoading = true;
     return this.loadingController.create({
-      duration: 5000,
+      //duration: 5000,
     }).then(a => {
       a.present().then(() => {
         console.log('presented');
