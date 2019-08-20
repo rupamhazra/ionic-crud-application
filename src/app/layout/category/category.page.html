@@ -1,0 +1,23 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>category</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content *ngIf="visibleKey">
+  <ion-grid>
+    <ion-row >
+      <ion-col size="6" *ngFor="let each_item of result">
+        <ion-card>
+            <ion-img [src]="this.medie_url+each_item.img"></ion-img>
+            <ion-card-header>
+                <ion-card-title>{{each_item.name}}</ion-card-title>
+            </ion-card-header>
+            <!-- <ion-card-content>
+                {{each_item.description}}
+            </ion-card-content> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

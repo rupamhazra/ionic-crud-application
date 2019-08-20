@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PolicyService } from '../../../core/services/policy.service';
+import { ProductService } from '../../../core/services/product.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingService } from '../../../core/services/loading.service';
@@ -7,20 +7,20 @@ import { ToasterService } from '../../../core/services/toaster.service';
 
 
 @Component({
-  selector: 'app-policy-edit',
-  templateUrl: './policy-edit.page.html',
-  styleUrls: ['./policy-edit.page.scss'],
+  selector: 'app-product-edit',
+  templateUrl: './product-edit.page.html',
+  styleUrls: ['./product-edit.page.scss'],
 })
-export class PolicyEditPage implements OnInit {
+export class ProductEditPage implements OnInit {
   form: FormGroup;
   visibleKey: boolean = false;
   policies:any;
-  selectedPolicy:  {};
-  policyId: number;
-  policyDetails: any;
+  selectedProduct:  {};
+  productId: number;
+  productDetails: any;
   constructor(
     private formBuilder: FormBuilder,
-    private policyService: PolicyService,
+    private productService: ProductService,
     private toasterService: ToasterService,
     private router: Router,
     private route: ActivatedRoute,
@@ -28,25 +28,25 @@ export class PolicyEditPage implements OnInit {
     ) {}
   ngOnInit() {
 
-    //this.policyDetails = [{ 'amount':null}]
+    //this.productDetails = [{ 'amount':null}]
     this.form = this.formBuilder.group({
       number: ['', Validators.required],
       amount: ['', Validators.required],
     });
     
-    this.policyId = this.route.snapshot.params['id']
-    this.readPolicy();
+    this.productId = this.route.snapshot.params['id']
+    this.readProduct();
     
   }
 
-  readPolicy()
+  readProduct()
   {
     //console.log("visibleKey ====="+this.visibleKey);
     this.loadingService.present();
-    this.policyService.getPolicy(this.policyId).subscribe( 
+    this.productService.getProduct(this.productId).subscribe( 
       res => {
-      this.policyDetails = res.result;
-      //console.log(this.policyDetails);
+      this.productDetails = res.result;
+      //console.log(this.productDetails);
       //console.log("visibleKey ====="+this.visibleKey);
       this.loadingService.dismiss();
       this.visibleKey = true;
@@ -64,13 +64,13 @@ export class PolicyEditPage implements OnInit {
 
  
 
-  updatePolicy(){
+  updateProduct(){
     console.log('update....')
-    this.policyService.updatePolicyService(this.policyId,this.form.value).subscribe(
+    this.productService.updateProductService(this.productId,this.form.value).subscribe(
       res=>{
-      console.log("Policy updated, ", res);
+      console.log("Product updated, ", res);
       this.toasterService.showToast(res.msg,2000);
-      this.router.navigateByUrl('/policy/policy-list');
+      this.router.navigateByUrl('/product/product-list');
       //this.readPolicies();
       },
       error => {

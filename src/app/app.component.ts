@@ -26,17 +26,23 @@ export class AppComponent {
       chileMenu:[]
     },
     {
-      title: 'Policy',
+      title: 'Categories',
+      url: '/categories',
+      icon: 'ios-list-box',
+      chileMenu:[]
+    },
+    {
+      title: 'Products',
       class: 'child-active',
       chileMenu:[
         {
           title: 'List',
-          url: '/policy/policy-list',
+          url: '/products/product-list',
           icon: 'list',
         },
         {
           title: 'Add',
-          url: '/policy/policy-add',
+          url: '/products/product-add',
           icon: 'list',
         },
       ]

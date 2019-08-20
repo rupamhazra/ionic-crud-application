@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PolicyService } from './policy.service';
+import { CategoryService } from './category.service';
 
-describe('PolicyService', () => {
+describe('CategoryService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PolicyService = TestBed.get(PolicyService);
+    const service: CategoryService = TestBed.get(CategoryService);
     expect(service).toBeTruthy();
   });
 });

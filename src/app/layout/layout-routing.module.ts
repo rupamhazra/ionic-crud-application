@@ -9,9 +9,12 @@ const routes: Routes = [
       children: [
         { path: '', redirectTo: 'dashboard' },
         { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
-        { path: 'policy', loadChildren: './policy/policy.module#PolicyPageModule' },
+        { path: 'products', loadChildren: './product/product.module#ProductPageModule' },
+        { path: 'categories', loadChildren: './category/category.module#CategoryPageModule' },
       ]
     },
+  
+
   ];
   
   @NgModule({

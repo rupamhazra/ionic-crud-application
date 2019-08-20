@@ -3,14 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-
-import { PolicyAddPage } from './policy-add.page';
-
+import { ProductEditPage } from './product-edit.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PolicyAddPage
+    component: ProductEditPage
   }
 ];
 
@@ -20,8 +18,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    IonicModule,
+    IonicModule
   ],
-  declarations: [PolicyAddPage]
+  declarations: [ProductEditPage]
 })
-export class PolicyAddPageModule {}
+export class ProductEditPageModule {}

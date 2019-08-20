@@ -1,5 +1,5 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
-import { PolicyService } from '../../../core/services/policy.service';
+import { ProductService } from '../../../core/services/product.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from  "@angular/router";
@@ -17,15 +17,15 @@ import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ioni
 const STORAGE_KEY = 'my_images';
 
 @Component({
-  selector: 'app-policy-add',
-  templateUrl: './policy-add.page.html',
-  styleUrls: ['./policy-add.page.scss'],
+  selector: 'app-product-add',
+  templateUrl: './product-add.page.html',
+  styleUrls: ['./product-add.page.scss'],
 })
-export class PolicyAddPage implements OnInit {
+export class ProductAddPage implements OnInit {
   form: FormGroup;
   visibleKey: boolean;
   policies:any;
-  selectedPolicy:  {};
+  selectedProduct:  {};
  
   public hasBaseDropZoneOver: boolean = false;
   image:any;
@@ -44,7 +44,7 @@ export class PolicyAddPage implements OnInit {
   };
   constructor(
     private formBuilder: FormBuilder,
-    private policyService: PolicyService,
+    private productService: ProductService,
     private toasterService: ToasterService,
     public loadingService : LoadingService,
     private  router:  Router,
@@ -304,7 +304,7 @@ readFile(file: any) {
 uploadImageData(formData: FormData) {
   console.log('started...')
   this.loadingService.present();
-  this.policyService.createPolicy(formData).subscribe(
+  this.productService.createProduct(formData).subscribe(
       res => {
             console.log('res===>',res)
             this.loadingService.dismiss();
@@ -317,12 +317,12 @@ uploadImageData(formData: FormData) {
       
       );
 }
-  addPolicy(){
+  addProduct(){
     console.log('check')
-    this.policyService.createPolicy(this.form.value).subscribe(res=>{
-      console.log("Policy created, ", res);
+    this.productService.createProduct(this.form.value).subscribe(res=>{
+      console.log("Product created, ", res);
       this.toasterService.showToast(res.msg,2000)
-      this.router.navigateByUrl('/policy/policy-list');
+      this.router.navigateByUrl('/product/product-list');
     },
     error => {
       console.log("error::::"+error);

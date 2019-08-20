@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { PolicyService } from '../../../core/services/policy.service';
+import { ProductService } from '../../../core/services/product.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { LoadingService } from '../../../core/services/loading.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { Router } from  "@angular/router";
 
 @Component({
-  selector: 'app-policy-list',
-  templateUrl: './policy-list.page.html',
-  styleUrls: ['./policy-list.page.scss'],
+  selector: 'app-product-list',
+  templateUrl: './product-list.page.html',
+  styleUrls: ['./product-list.page.scss'],
 })
-export class PolicyListPage implements OnInit {
+export class ProductListPage implements OnInit {
 
   form: FormGroup;
   visibleKey: boolean = false;
   policies:[];
-  selectedPolicy:  {};
+  selectedProduct:  {};
   constructor(
     private formBuilder: FormBuilder,
-    private policyService: PolicyService,
+    private productService: ProductService,
     private toasterService: ToasterService,
     public loadingService : LoadingService,
     private router: Router
@@ -32,7 +32,7 @@ export class PolicyListPage implements OnInit {
   readPolicies()
   {
     this.policies =[];
-    this.policyService.readPolicies().subscribe( 
+    this.productService.readPolicies().subscribe( 
       res => {
       this.policies = res.result;
       console.log(this.policies);
@@ -50,16 +50,16 @@ export class PolicyListPage implements OnInit {
     )
   }
 
-  editPolicy(id){
+  editProduct(id){
     console.log('id====',id)
-    this.router.navigateByUrl('/policy/policy-edit/' + id);
+    this.router.navigateByUrl('/product/product-edit/' + id);
   }
 
-  deletePolicy(id){
+  deleteProduct(id){
     this.loadingService.present();
-    this.policyService.deletePolicy(id,null).subscribe(
+    this.productService.deleteProduct(id,null).subscribe(
       res=>{
-      console.log("Policy deleted, ", res);
+      console.log("Product deleted, ", res);
       this.loadingService.dismiss();
       this.toasterService.showToast(res.msg,2000)
       this.readPolicies();

@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './auth/login/login.module#LoginPageModule' 
   },
+
   
 ];
 
