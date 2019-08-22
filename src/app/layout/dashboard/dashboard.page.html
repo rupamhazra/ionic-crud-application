@@ -1,4 +1,4 @@
-<ion-content color="light">
+<ion-content>
   <div *ngIf="visibleKey" class="category-list-div" margin-bottom>
     <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
         <ion-slides pager="true" [options]="slideOpts1">
@@ -26,10 +26,7 @@
   <div class="sliders-div" *ngIf="visibleKey">
     <ion-slides pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let each_item1 of result_slide">
-            
-                <ion-img [src]="this.medie_url+each_item1.img"></ion-img>
-               
-            
+          <ion-img [src]="this.medie_url+each_item1.img"></ion-img>
         </ion-slide>
     </ion-slides>
   </div>
@@ -38,12 +35,12 @@
     <ion-grid>
       <ion-row >
         <ion-col size="4" *ngFor="let each_item of result">
-          <ion-card class="_card-cl-bag _c_card-cl-ma-r-l-n">
-              <ion-img [src]="this.medie_url+each_item.img"></ion-img>
-             
-              <ion-card-content>
-                  {{each_item.name}}
-              </ion-card-content>
+          <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
+            <ion-img [src]="this.medie_url+each_item.img"></ion-img>
+            <ion-card-content>
+              {{each_item.name}}
+              <ion-button fill="outline" slot="end" size="small" (click)="getProduct(each_item.id)">View</ion-button>
+            </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>

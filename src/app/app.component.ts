@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,8 @@ export class AppComponent {
   logout_visible:boolean = false
   login_visible:boolean = false
   public name:any
+  public profile_img:any
+  medie_url:any = environment.imageURL
   public appPages = [
     {
       title: 'Dashboard',
@@ -74,6 +77,7 @@ export class AppComponent {
           this.login_visible = false;
           this.storage.get('USER_INFO').then((val) => {
             this.name = val.name
+            this.profile_img = val.img
           });
           this.router.navigateByUrl('/dashboard');
         } else {

@@ -11,7 +11,7 @@ import { ToasterService } from '../../core/services/toaster.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  styleUrls: ['./dashboard.page.scss','../layout.page.scss'],
 })
 export class DashboardPage implements OnInit {
   name:any;
@@ -118,5 +118,8 @@ export class DashboardPage implements OnInit {
     }
     )
   }
-  
+  getProduct(id){
+    //console.log('id====',id)
+    this.router.navigateByUrl('/products/product-single/'+id);
+  }
 }

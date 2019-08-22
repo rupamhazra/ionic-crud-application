@@ -26,13 +26,13 @@ export class ProductListPage implements OnInit {
     
   ngOnInit() {
     this.loadingService.present();
-    this.readPolicies();
+    this.readProducts();
   }
 
-  readPolicies()
+  readProducts()
   {
     this.policies =[];
-    this.productService.readPolicies().subscribe( 
+    this.productService.readProducts().subscribe( 
       res => {
       this.policies = res.result;
       console.log(this.policies);
@@ -62,7 +62,7 @@ export class ProductListPage implements OnInit {
       console.log("Product deleted, ", res);
       this.loadingService.dismiss();
       this.toasterService.showToast(res.msg,2000)
-      this.readPolicies();
+      this.readProducts();
     },
     error => {
       console.log("error::::"+error);

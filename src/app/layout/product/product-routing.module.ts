@@ -11,9 +11,13 @@ const routes: Routes = [
     loadChildren: './product-add/product-add.module#ProductAddPageModule' 
   },
   { 
-    path: 'product-edit/:id', 
+    path: 'product-edit/:id',
     loadChildren: './product-edit/product-edit.module#ProductEditPageModule' 
   },
+  { path: 'product-single/:id',
+    loadChildren: './product-single/product-single.module#ProductSinglePageModule' 
+  },
+
   
 ];
 

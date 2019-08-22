@@ -4,9 +4,12 @@
       <ion-header>
           <ion-item>
               <ion-avatar slot="start">
-                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                  <ion-img [src]="this.medie_url+profile_img"></ion-img>
               </ion-avatar>
               <ion-label>Hello, {{name}}</ion-label>
+              <ion-avatar slot="end">
+                  <ion-img src="./assets/icon/icon.png"></ion-img>
+              </ion-avatar>
          </ion-item>
       </ion-header>
       <ion-content>

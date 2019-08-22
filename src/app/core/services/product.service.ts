@@ -18,11 +18,12 @@ export class ProductService {
   readProducts(): Observable<any>{
     return this.http.get(environment.apiEndpoint + 'read.php?module_type=products');
   }
+  getProduct(id:number): Observable<any>{
+    return this.http.get(environment.apiEndpoint +'read.php?module_type=products&module_type_id='+id);   
+  }
+  
   createProduct(data:any): Observable<any>{
     return this.http.post(environment.apiEndpoint +'create.php', data);
-  }
-  getProduct(id:number): Observable<any>{
-    return this.http.get(environment.apiEndpoint +'read.php?module_type=product&module_type_id='+id);   
   }
   updateProductService(id:number, data: any): Observable<any>{
     console.log('data',data)
