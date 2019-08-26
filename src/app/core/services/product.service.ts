@@ -22,6 +22,7 @@ export class ProductService {
     return this.http.get(environment.apiEndpoint +'read.php?module_type=products&module_type_id='+id);   
   }
   
+  
   createProduct(data:any): Observable<any>{
     return this.http.post(environment.apiEndpoint +'create.php', data);
   }

@@ -4,6 +4,9 @@ import { ToasterService } from '../../../core/services/toaster.service';
 import { ProductService } from '../../../core/services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+//import { ModalController } from '@ionic/angular';
+import { ModalService } from '../../../core/services/modal.service';
+import { ProductDetailsPage } from '../product-details/product-details.page';
 
 @Component({
   selector: 'app-product-single',
@@ -14,13 +17,18 @@ export class ProductSinglePage implements OnInit {
   productId: number;
   productDetails: any;
   visibleKey: boolean = false;
-  medie_url:any = environment.imageURL
+  medie_url:any = environment.imageURL;
+  mainImage:any;
+  subImageClass:any;
+  //modalData:any;
   constructor(
     private productService: ProductService,
     private toasterService: ToasterService,
     private router: Router,
     private route: ActivatedRoute,
     public loadingService : LoadingService,
+    public modalService: ModalService,
+
   ) { }
 
   ngOnInit() {
@@ -34,6 +42,7 @@ export class ProductSinglePage implements OnInit {
     this.productService.getProduct(this.productId).subscribe( 
       res => {
       this.productDetails = res.result;
+      this.mainImage = this.productDetails.img
       //console.log(this.productDetails);
       //console.log("visibleKey ====="+this.visibleKey);
       this.loadingService.dismiss();
@@ -49,4 +58,20 @@ export class ProductSinglePage implements OnInit {
       }
     )
   }
+
+  getProductDetails()
+  {
+    //this.loadingService.present();
+    this.modalService.openModal(ProductDetailsPage,this.productDetails);
+    //this.loadingService.dismiss();
+  }  
+  chnageProductImage(event:any,image_name){
+    console.log('enevt',event)
+    //console.log('image_name',image_name)
+    //this.mainImageClass += " sddsdsd";
+    event.path[0].parent = '_c_img_focus_b';
+    //event.path[0].style = "border: 2px solid red;";
+    this.mainImage = image_name;
+  }
+ 
 }

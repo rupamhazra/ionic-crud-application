@@ -1,15 +1,20 @@
 <ion-content>
     <div *ngIf="visibleKey" class="products-list-div">
       <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n _c_card-cl-ma-t-n">
-        <ion-img [src]="this.medie_url+productDetails.img" class="_c_img_m_l_r"></ion-img>
+        <ion-img [src]="this.medie_url+mainImage" class="_c_img_m_l_r"></ion-img>
         <ion-card-content>
             <ion-grid no-padding>
                 <ion-row text-center>
                   <ion-col size="2" *ngFor="let e_img of productDetails.gallery_images" no-padding>
-                    <ion-thumbnail>
-                      <ion-img [src]="this.medie_url+e_img.img"></ion-img>
-                    </ion-thumbnail>
+                    <div [class]="subImageClass">
+                      <ion-thumbnail>
+                        <ion-img [src]="this.medie_url+e_img.img" (click)=chnageProductImage($event,e_img.img) [class]="subImageClass">
+
+                        </ion-img>
+                      </ion-thumbnail>
+                    </div>
                   </ion-col>
+                  <ion-col size="2" no-padding (click)="getProductDetails()">Product <br>Details</ion-col>
                 </ion-row>
             </ion-grid>
             <ion-card-header class="_c_card_h_t">

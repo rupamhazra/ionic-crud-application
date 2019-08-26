@@ -27,6 +27,11 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
+/**
+ * For modal purpose
+ */
+import { ProductDetailsPageModule } from './layout/product/product-details/product-details.module';
+
 
 
 
@@ -40,7 +45,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ProductDetailsPageModule
   ],
   providers: [
     StatusBar,

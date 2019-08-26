@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar text-center>
+      <ion-title>{{name}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center>
+          {{description}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+          <ion-button (click)="closeProductDetailsModal()">Close Modal</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
