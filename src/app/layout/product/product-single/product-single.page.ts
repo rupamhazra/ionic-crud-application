@@ -73,5 +73,10 @@ export class ProductSinglePage implements OnInit {
     //event.path[0].style = "border: 2px solid red;";
     this.mainImage = image_name;
   }
+
+  getProdcutSlider(id:any){
+    console.log('id',id)
+    this.router.navigateByUrl('/products/product-single-zoom/'+id);
+  }
  
 }

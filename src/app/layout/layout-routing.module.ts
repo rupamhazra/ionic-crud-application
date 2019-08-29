@@ -7,12 +7,19 @@ const routes: Routes = [
       path: '',
       component: LayoutPage,   
       children: [
-        { path: '', redirectTo: 'dashboard' },
+        { path: '', redirectTo: 'home' },
+        { path: 'home', loadChildren: './home/home.module#HomePageModule' },
         { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
         { path: 'products', loadChildren: './product/product.module#ProductPageModule' },
         { path: 'categories', loadChildren: './category/category.module#CategoryPageModule' },
+        { path: 'myaccount', loadChildren: './myaccount/myaccount.module#MyaccountPageModule' },
       ]
     },
+  
+  
+
+  
+
   
 
   ];

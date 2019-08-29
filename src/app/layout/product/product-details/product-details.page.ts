@@ -9,8 +9,8 @@ import { ModalService } from '../../../core/services/modal.service';
   styleUrls: ['./product-details.page.scss'],
 })
 export class ProductDetailsPage implements OnInit {
-  modalTitle:string;
-  modelId:number;
+  result:any;
+  //modelId:number;
   constructor(
     private modalService: ModalService,
     private navParams: NavParams
@@ -18,8 +18,9 @@ export class ProductDetailsPage implements OnInit {
 
   ngOnInit() {
     console.table(this.navParams);
-    this.modelId = this.navParams.data.paramID;
-    this.modalTitle = this.navParams.data.paramTitle;
+    this.result = this.navParams.data;
+    //this.modelId = this.navParams.data.paramID;
+    //this.modalTitle = this.navParams.data.paramTitle;
   }
   
   closeProductDetailsModal(){

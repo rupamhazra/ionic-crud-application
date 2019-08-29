@@ -5,7 +5,7 @@ import { ModalController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ModalService {
-
+  dataReturned:any;
   constructor(
     public modalController: ModalController
   ) { }

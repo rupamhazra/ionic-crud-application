@@ -8,13 +8,13 @@ import { environment } from 'src/environments/environment';
 import { LoadingService } from '../../core/services/loading.service';
 import { ToasterService } from '../../core/services/toaster.service';
 
-
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss','../layout.page.scss'],
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss','../layout.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class HomePage implements OnInit {
+
   name:any;
   title:any;
   medie_url:any = environment.imageURL
@@ -52,16 +52,18 @@ export class DashboardPage implements OnInit {
     console.log('this.router.url', this.router.url);
     this.title = this.router.url;
     this.storage.get('USER_INFO').then((val) => {
-      this.name = val.name
+
+      if(val) this.name = val.name
+      
     });
-    this.loadingService.present();
+    
     this.readSliders();
     this.readCategories();
     this.readProducts();
   }
   readSliders()
   {
-
+    this.loadingService.present();
     //this.categories =[];
     this.sliderService.readSliders().subscribe( 
       res => {
@@ -83,7 +85,7 @@ export class DashboardPage implements OnInit {
   }
   readCategories()
   {
-
+    this.loadingService.present();
     //this.categories =[];
     this.categoryService.readCategories().subscribe( 
       res => {
@@ -104,7 +106,7 @@ export class DashboardPage implements OnInit {
   }
   readProducts()
   {
-
+    this.loadingService.present();
     //this.categories =[];
     this.productService.readProducts().subscribe( 
       res => {
@@ -128,4 +130,5 @@ export class DashboardPage implements OnInit {
     //console.log('id====',id)
     this.router.navigateByUrl('/products/product-single/'+id);
   }
+
 }

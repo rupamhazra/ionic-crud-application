@@ -2,15 +2,23 @@
   <ion-split-pane>
     <ion-menu type="overlay">
       <ion-header>
-          <ion-item>
+          <ion-item *ngIf="name">
               <ion-avatar slot="start">
                   <ion-img [src]="this.medie_url+profile_img"></ion-img>
               </ion-avatar>
+
               <ion-label>Hello, {{name}}</ion-label>
               <ion-avatar slot="end">
                   <ion-img src="./assets/icon/icon.png"></ion-img>
               </ion-avatar>
          </ion-item>
+         <ion-item *ngIf="!name">
+            <ion-icon name="home"></ion-icon>
+            <a href="/home" style="text-decoration: none;margin-top: 5px;"><ion-label padding>Home</ion-label></a>
+            <ion-avatar slot="end">
+                <ion-img src="./assets/icon/icon.png"></ion-img>
+            </ion-avatar>
+       </ion-item>
       </ion-header>
       <ion-content>
         <div *ngFor="let p of appPages">
@@ -44,7 +52,7 @@
             </ion-menu-toggle>
           </ion-list>
         </div>
-        <div>
+        <!-- <div>
           <ion-item *ngIf="logout_visible">
             <ion-icon slot="start" name="log-out" color="warning"></ion-icon>
             <ion-label (click)="logoutUser()" color="warning">
@@ -57,7 +65,7 @@
                   Login
               </ion-label>
             </ion-item>
-        </div>
+        </div> -->
       </ion-content>
     </ion-menu>
     

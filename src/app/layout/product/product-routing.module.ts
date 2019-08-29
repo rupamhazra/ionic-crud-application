@@ -16,7 +16,15 @@ const routes: Routes = [
   },
   { path: 'product-single/:id',
     loadChildren: './product-single/product-single.module#ProductSinglePageModule' 
-  },  { path: 'product-details', loadChildren: './product-details/product-details.module#ProductDetailsPageModule' },
+  },
+  { 
+    path: 'product-details',
+    loadChildren: './product-details/product-details.module#ProductDetailsPageModule' 
+  },
+  { 
+    path: 'product-single-zoom/:id', 
+    loadChildren: './product-single-zoom/product-single-zoom.module#ProductSingleZoomPageModule' 
+  },
 
 
   

@@ -6,7 +6,7 @@ const routes: Routes = [
   { 
     path: '', 
     loadChildren: './layout/layout.module#LayoutPageModule',
-    canActivate: [AuthGuardService]
+    //canActivate: [AuthGuardService]
   },
   { 
     path: 'register',

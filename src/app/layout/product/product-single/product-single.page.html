@@ -1,7 +1,7 @@
 <ion-content>
     <div *ngIf="visibleKey" class="products-list-div">
       <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n _c_card-cl-ma-t-n">
-        <ion-img [src]="this.medie_url+mainImage" class="_c_img_m_l_r"></ion-img>
+        <ion-img [src]="this.medie_url+mainImage" class="_c_img_m_l_r" (click)="getProdcutSlider(productDetails.id)"></ion-img>
         <ion-card-content>
             <ion-grid no-padding>
                 <ion-row text-center>

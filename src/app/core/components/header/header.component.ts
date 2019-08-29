@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.title = 'Dashboard';
+    this.title = 'Home';
   }
   logoutUser(){
     this.authService.logout();

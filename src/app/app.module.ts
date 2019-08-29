@@ -16,6 +16,10 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AuthGuardService } from './core/services/auth-guard.service';
 import { AuthenticationService } from './core/services/authentication.service';
 
+/** 
+ * Get Camera 
+*/
+
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -31,6 +35,13 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
  * For modal purpose
  */
 import { ProductDetailsPageModule } from './layout/product/product-details/product-details.module';
+import { LoginPageModule } from './layout/myaccount/login/login.module';
+
+
+/**
+ * For Network conection
+ */
+import { Network } from '@ionic-native/network/ngx';
 
 
 
@@ -46,7 +57,11 @@ import { ProductDetailsPageModule } from './layout/product/product-details/produ
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
-    ProductDetailsPageModule
+    ProductDetailsPageModule,
+    LoginPageModule,
+    
+    
+    
   ],
   providers: [
     StatusBar,
@@ -59,7 +74,9 @@ import { ProductDetailsPageModule } from './layout/product/product-details/produ
     WebView,
     FilePath,
     Geolocation,
-    NativeGeocoder
+    NativeGeocoder,
+    Network
+    
     
   ],
   bootstrap: [AppComponent]

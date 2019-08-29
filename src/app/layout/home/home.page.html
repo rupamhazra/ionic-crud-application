@@ -1,0 +1,64 @@
+<ion-content>
+    <div *ngIf="visibleKey" class="category-list-div" margin-bottom>
+      <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
+          <ion-slides pager="true" [options]="slideOpts1">
+            
+              <ion-slide *ngFor="let each_item1 of result_cat" class="_c_slide_p">
+                  
+                  <ion-grid>
+                      <ion-row text-center>
+                          <ion-col>
+                            <ion-img [src]="this.medie_url+each_item1.img" class="_c_img_h"></ion-img>
+                            
+  
+                          </ion-col>
+                      </ion-row>
+                      <ion-row text-center>
+                          <ion-col>
+                            <ion-label class="_c_title-f-sm">{{each_item1.name}}</ion-label>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-slide>
+          </ion-slides>
+      </ion-card>
+    </div>
+    <div class="sliders-div" *ngIf="visibleKey">
+      <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide *ngFor="let each_item1 of result_slide">
+            <ion-img [src]="this.medie_url+each_item1.img"></ion-img>
+          </ion-slide>
+      </ion-slides>
+    </div>
+    
+    <div *ngIf="visibleKey" class="products-list-div">
+      <ion-grid>
+        <ion-row >
+          <ion-col size="4" *ngFor="let each_item of result">
+            <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
+              <ion-img [src]="this.medie_url+each_item.img"></ion-img>
+              <ion-card-content>
+                {{each_item.name}}
+                <ion-button fill="outline" slot="end" size="small" (click)="getProduct(each_item.id)">View</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  
+    <ion-card class="welcome-card">
+        <img src="/assets/shapes.svg" alt="" />
+        <!-- <ion-card-header>
+          <ion-card-subtitle>Get Started</ion-card-subtitle>
+          <ion-card-title>
+            Hi, {{name}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+        </ion-card-content> -->
+      </ion-card>
+    
+  </ion-content>
+  
