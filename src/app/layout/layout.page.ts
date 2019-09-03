@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router:Router,
+  ) { }
 
   ngOnInit() {
+    console.log("current route",this.router.url)
   }
 
 }

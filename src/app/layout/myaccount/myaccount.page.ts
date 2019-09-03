@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../core/services/modal.service';
 import { LoginPage } from './login/login.page';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-myaccount',
   templateUrl: './myaccount.page.html',
-  styleUrls: ['./myaccount.page.scss'],
+  styleUrls: ['./myaccount.page.scss','../layout.page.scss'],
 })
 export class MyaccountPage implements OnInit {
-  visible_register:boolean;
+  visible_myaccount_details_div:boolean;
+
+  name:any;
   constructor(
     public modalService: ModalService,
+    private storage: Storage,
   ) { 
     //this.modalService.closeModal();
     //this.modalService.openModal(LoginPage,null);
@@ -21,15 +25,20 @@ export class MyaccountPage implements OnInit {
     console.log('openmodal')
     //this.visible_register = false;
     //this.modalService.openModal(LoginPage,null);
-    
+    this.storage.get('USER_INFO').then((val) => {
+      if (val.name) {
+        this.name = val.name
+        console.log('this.name',this.name)
+        this.visible_myaccount_details_div = true
+      }
+      else{
+        this.visible_myaccount_details_div = false
+      }
+    });
+   
   }
   openLoginModal(){
     this.modalService.openModal(LoginPage,null);
   }
-  openRegisterDiv(){
-    this.visible_register = true;
-  }
-  openLoginDiv(){
-    this.visible_register = false;
-  }
+  
 }

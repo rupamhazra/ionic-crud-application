@@ -4,13 +4,12 @@ import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { LoginRegisterService } from '../../../core/services/login-register.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { AuthenticationService } from '../../../core/services/authentication.service';
-import { RegisterPage } from '../register/register.page';
 import { ModalService } from '../../../core/services/modal.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss','../../layout.page.scss'],
 })
 export class LoginPage implements OnInit {
   visible_register:boolean;
@@ -45,8 +44,10 @@ export class LoginPage implements OnInit {
       //localStorage.setItem('userDetails',JSON.stringify(res.result));
 
       this.toasterService.showToast(res.msg,2000);
+
       //this.router.navigateByUrl('home');
       this.authService.login(res.result);
+      this.modalService.closeModal();
     },
     error => {
       console.log("error::::"+error.error.msg);

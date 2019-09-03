@@ -35,7 +35,7 @@ export class AuthenticationService {
     //   user_name: 'test'
     // };
     this.storage.set('USER_INFO', loginDetails).then((response) => {
-      this.router.navigateByUrl('/dashboard');
+      //this.router.navigateByUrl('/dashboard');
       this.authState.next(true);
     });
   }

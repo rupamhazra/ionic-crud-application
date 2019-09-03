@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LayoutPage } from './layout.page';
 import { LayoutRoutingModule } from './layout-routing.module'
-import { HeaderComponent } from "../core/components/header/header.component";
+
 
 @NgModule({
   imports: [
@@ -14,6 +14,6 @@ import { HeaderComponent } from "../core/components/header/header.component";
     LayoutRoutingModule,
     
   ],
-  declarations: [LayoutPage,HeaderComponent]
+  declarations: [LayoutPage]
 })
 export class LayoutPageModule {}

@@ -75,6 +75,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      
       this.networkService.checkNetworkDisconnect();
       window.addEventListener('offline', () => {
         this.networkService.checkNetworkDisconnect();

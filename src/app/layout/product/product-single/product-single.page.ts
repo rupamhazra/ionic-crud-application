@@ -78,5 +78,9 @@ export class ProductSinglePage implements OnInit {
     console.log('id',id)
     this.router.navigateByUrl('/products/product-single-zoom/'+id);
   }
+
+  add_to_cart(){
+    
+  }
  
 }

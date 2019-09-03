@@ -1,17 +1,30 @@
-
-
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+          My Account
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-    <ion-item no-margin color="" lines="none">
+  <div *ngIf="!visible_myaccount_details_div">
+      <ion-item no-margin color="" lines="none">
+          <img src="/assets/shapes.svg" alt="" />
+      </ion-item>
+      <ion-item padding lines="none">
+          <ion-text>Please login or sign up your account</ion-text>
+      </ion-item>
+      <ion-button type="button" expand="full" (click)="openLoginModal()" color="tertiary">Sign In</ion-button>
+  </div>
+  <div *ngIf="visible_myaccount_details_div">
+    <ion-card>
         <img src="/assets/shapes.svg" alt="" />
-        
-    </ion-item>
-    <ion-item padding lines="none">
-        <ion-text>Please login or sign up your account</ion-text>
-        
-    </ion-item>
-    <ion-button type="button" expand="full" (click)="openLoginModal()">Sign In</ion-button>
-   
-    
-    
+        <ion-title>
+          {{name}}
+        </ion-title>
+    </ion-card>
+  </div>
     
 </ion-content>

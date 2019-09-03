@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,12 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  title : any
+  title : any;
+  current_route:any;
+  header_common_toolbar:boolean = false;
+  header_product_single:boolean = false;
+  buttonText:any;
+  buttonIcon:any;
   public appPages = [
     {
       title: 'Register',
@@ -48,11 +54,27 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
+    private router:Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     
-  ) { }
+   }
 
   ngOnInit() {
-    this.title = 'Home';
+    //console.log("current route",this.activatedRoute.snapshot.url)
+    console.log("current route",this.router.url)
+    this.current_route = this.router.url
+    if(this.current_route.includes('/product-single')){
+      //console.log('yessssssssssssssssssssss')
+      this.header_product_single = true;
+      this.buttonText = 'Back';
+      this.buttonIcon = 'back';
+    }
+    else{
+      this.title = 'Home';
+      
+      this.header_common_toolbar = true;
+    }
   }
   logoutUser(){
     this.authService.logout();

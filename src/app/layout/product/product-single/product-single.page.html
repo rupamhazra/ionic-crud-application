@@ -1,29 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-    <div *ngIf="visibleKey" class="products-list-div">
-      <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n _c_card-cl-ma-t-n">
-        <ion-img [src]="this.medie_url+mainImage" class="_c_img_m_l_r" (click)="getProdcutSlider(productDetails.id)"></ion-img>
-        <ion-card-content>
-            <ion-grid no-padding>
-                <ion-row text-center>
-                  <ion-col size="2" *ngFor="let e_img of productDetails.gallery_images" no-padding>
-                    <div [class]="subImageClass">
-                      <ion-thumbnail>
-                        <ion-img [src]="this.medie_url+e_img.img" (click)=chnageProductImage($event,e_img.img) [class]="subImageClass">
+  <div *ngIf="visibleKey" class="products-list-div">
+    <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n _c_card-cl-ma-t-n">
+      <ion-img [src]="this.medie_url+mainImage" class="_c_img_m_l_r" (click)="getProdcutSlider(productDetails.id)">
+      </ion-img>
+      <ion-card-content>
+        <ion-grid no-padding>
+          <ion-row text-center>
+            <ion-col size="2" *ngFor="let e_img of productDetails.gallery_images" no-padding>
+              <div [class]="subImageClass">
+                <ion-thumbnail>
+                  <ion-img [src]="this.medie_url+e_img.img" (click)=chnageProductImage($event,e_img.img)
+                    [class]="subImageClass">
 
-                        </ion-img>
-                      </ion-thumbnail>
-                    </div>
-                  </ion-col>
-                  <ion-col size="2" no-padding (click)="getProductDetails()">Product <br>Details</ion-col>
-                </ion-row>
-            </ion-grid>
-            <ion-card-header class="_c_card_h_t">
-              <ion-card-title style="font-size:16px;">{{productDetails.name}}</ion-card-title>
-              <ion-card-title style="font-size:32px;"><i class="fa fa-rupee"></i>{{productDetails.unit_price}}</ion-card-title>
-            </ion-card-header>
-            <!-- <ion-button fill="outline" slot="end" size="small" (click)="getProduct(each_item.id)">View</ion-button> -->
-        </ion-card-content>
-      </ion-card>
-           
-      </div>
+                  </ion-img>
+                </ion-thumbnail>
+              </div>
+            </ion-col>
+            <ion-col size="2" no-padding (click)="getProductDetails()">Product <br>Details</ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-card-header class="_c_card_h_t">
+          <ion-card-title style="font-size:16px;">{{productDetails.name}}</ion-card-title>
+          <ion-card-title style="font-size:32px;"><i class="fa fa-rupee"></i>{{productDetails.unit_price}}
+          </ion-card-title>
+        </ion-card-header>
+        <!-- <ion-button fill="outline" slot="end" size="small" (click)="getProduct(each_item.id)">View</ion-button> -->
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+  <div margin-bottom>
+    <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
+      <ion-card-content>
+        <ion-text>
+          Contrary to popular belief, Lorem Ipsum is not simply random text.
+          It has roots in a piece of classical Latin literature from 45 BC, making it over 2000
+          years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+          looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+          and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
+          Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
+          Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
+          Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
+          1.10.32.
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div>
+
+    <ion-segment>
+      <ion-segment-button value="friends" class="_c_ion-segment-button-buy-now">
+        <ion-label>Buy Now</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="enemies" style="color:#000;" (click)="add_to_cart()">
+        <ion-label>Add to Cart</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 </ion-content>
