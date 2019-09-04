@@ -46,6 +46,8 @@ import { Network } from '@ionic-native/network/ngx';
 
 
 
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -79,6 +81,6 @@ import { Network } from '@ionic-native/network/ngx';
     
     
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

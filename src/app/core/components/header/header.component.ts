@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,74 +7,18 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  title : any;
-  current_route:any;
-  header_common_toolbar:boolean = false;
-  header_product_single:boolean = false;
-  buttonText:any;
-  buttonIcon:any;
-  public appPages = [
-    {
-      title: 'Register',
-      url: '/register',
-      icon: 'list',
-      chileMenu:[]
-    },
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'list',
-      chileMenu:[]
-    },
-    {
-      title: 'Dashboard',
-      url: '/dashboard',
-      icon: 'home',
-      chileMenu:[]
-    },
-    {
-      title: 'Policy',
-      class: 'child-active',
-      chileMenu:[
-        {
-          title: 'List',
-          url: '/policy/policy-list',
-          icon: 'list',
-        },
-        {
-          title: 'Add',
-          url: '/policy/policy-add',
-          icon: 'list',
-        },
-      ]
-    },
-  ];
-
+  menu_button_visible:boolean;
+  title:any;
   constructor(
-    private authService: AuthenticationService,
-    private router:Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    
-   }
+    private router : Router
+  ) { }
 
   ngOnInit() {
-    //console.log("current route",this.activatedRoute.snapshot.url)
-    console.log("current route",this.router.url)
-    this.current_route = this.router.url
-    if(this.current_route.includes('/product-single')){
-      //console.log('yessssssssssssssssssssss')
-      this.header_product_single = true;
-      this.buttonText = 'Back';
-      this.buttonIcon = 'back';
-    }
-    else{
-      this.title = 'Home';
-      
-      this.header_common_toolbar = true;
+    console.log("current Link",this.router.url);
+    if(this.router.url.includes('home')){
+      this.menu_button_visible = true;
+      this.title = "RSKart";
     }
   }
-  logoutUser(){
-    this.authService.logout();
-  }
+
 }

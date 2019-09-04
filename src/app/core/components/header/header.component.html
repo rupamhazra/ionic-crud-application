@@ -1,15 +1,16 @@
 <ion-header>
-    <ion-toolbar *ngIf="header_common_toolbar">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>
-          {{title}}
-      </ion-title>
-    </ion-toolbar>
-    <ion-toolbar *ngIf="header_product_single">
-        <ion-buttons slot="start">
+    <ion-toolbar>
+        <ion-buttons slot="start" *ngIf="menu_button_visible">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title *ngIf="menu_button_visible" no-padding>
+             {{title}}
+          </ion-title>
+        <ion-buttons slot="start" *ngIf="!menu_button_visible">
           <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
+        <ion-icon name="cart" slot="end" padding></ion-icon>
+        <ion-badge id="cart-badge" color="danger" size="small">10</ion-badge>
     </ion-toolbar>
 </ion-header>
+
