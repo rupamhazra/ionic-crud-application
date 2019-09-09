@@ -12,6 +12,7 @@ import { ModalService } from '../../../core/services/modal.service';
   styleUrls: ['./login.page.scss','../../layout.page.scss'],
 })
 export class LoginPage implements OnInit {
+  name:any;
   visible_register:boolean;
   form: FormGroup;
   reg_form: FormGroup;

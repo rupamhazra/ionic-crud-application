@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { LoadingService } from '../../../core/services/loading.service';
 import { ToasterService } from '../../../core/services/toaster.service';
 import { ProductService } from '../../../core/services/product.service';
@@ -7,6 +7,9 @@ import { environment } from 'src/environments/environment';
 //import { ModalController } from '@ionic/angular';
 import { ModalService } from '../../../core/services/modal.service';
 import { ProductDetailsPage } from '../product-details/product-details.page';
+import { Storage } from '@ionic/storage';
+import { Events } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-product-single',
@@ -14,12 +17,15 @@ import { ProductDetailsPage } from '../product-details/product-details.page';
   styleUrls: ['./product-single.page.scss','../../layout.page.scss'],
 })
 export class ProductSinglePage implements OnInit {
+  //product_count:number;
   productId: number;
   productDetails: any;
   visibleKey: boolean = false;
   medie_url:any = environment.imageURL;
   mainImage:any;
   subImageClass:any;
+  count:number = 10;
+  productDetailsAdd:any = [];
   //modalData:any;
   constructor(
     private productService: ProductService,
@@ -28,6 +34,9 @@ export class ProductSinglePage implements OnInit {
     private route: ActivatedRoute,
     public loadingService : LoadingService,
     public modalService: ModalService,
+    private storage: Storage,
+    public events1: Events
+
 
   ) { }
 
@@ -79,8 +88,31 @@ export class ProductSinglePage implements OnInit {
     this.router.navigateByUrl('/products/product-single-zoom/'+id);
   }
 
-  add_to_cart(){
-    
+  addToCartEvent(){
+    this.storage.get('allProductDetailsInCart').then((val) => {
+      if(val) 
+      {
+        console.log('if val',val)
+        val.push(this.productDetails);
+        console.log('this.allProductDetailsInCart',val)
+        this.storage.set("allProductDetailsInCart",val);
+        this.storage.set('product_count',val.length)
+        this.events1.publish('showProductCountOnCart', val.length);
+      }
+      else
+      {
+        console.log('else val',val)
+        console.log('this.productDetails',this.productDetails)
+        this.productDetailsAdd.push(this.productDetails)
+        this.storage.set("allProductDetailsInCart",this.productDetailsAdd);
+        this.storage.set('product_count',1)
+        this.events1.publish('showProductCountOnCart', 1);
+
+      }
+      
+    });
   }
  
 }
+
+

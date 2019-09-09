@@ -10,8 +10,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyaccountPage implements OnInit {
   visible_myaccount_details_div:boolean;
-
-  name:any;
+  name:any = '';
   constructor(
     public modalService: ModalService,
     private storage: Storage,
@@ -26,7 +25,7 @@ export class MyaccountPage implements OnInit {
     //this.visible_register = false;
     //this.modalService.openModal(LoginPage,null);
     this.storage.get('USER_INFO').then((val) => {
-      if (val.name) {
+      if (val) {
         this.name = val.name
         console.log('this.name',this.name)
         this.visible_myaccount_details_div = true
