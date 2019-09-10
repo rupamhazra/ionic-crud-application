@@ -96,7 +96,7 @@ export class ProductSinglePage implements OnInit {
         val.push(this.productDetails);
         console.log('this.allProductDetailsInCart',val)
         this.storage.set("allProductDetailsInCart",val);
-        this.storage.set('product_count',val.length)
+        //this.storage.set('product_count',val.length)
         this.events1.publish('showProductCountOnCart', val.length);
       }
       else
@@ -105,7 +105,7 @@ export class ProductSinglePage implements OnInit {
         console.log('this.productDetails',this.productDetails)
         this.productDetailsAdd.push(this.productDetails)
         this.storage.set("allProductDetailsInCart",this.productDetailsAdd);
-        this.storage.set('product_count',1)
+        //this.storage.set('product_count',1)
         this.events1.publish('showProductCountOnCart', 1);
 
       }

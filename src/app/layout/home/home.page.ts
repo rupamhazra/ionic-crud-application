@@ -56,10 +56,11 @@ export class HomePage implements OnInit {
       if(val) this.name = val.name
       
     });
-    
+    //this.loadingService.present();
     this.readSliders();
     this.readCategories();
     this.readProducts();
+    //this.loadingService.dismiss();
   }
   readSliders()
   {
@@ -85,19 +86,19 @@ export class HomePage implements OnInit {
   }
   readCategories()
   {
-    this.loadingService.present();
+    //this.loadingService.present();
     //this.categories =[];
     this.categoryService.readCategories().subscribe( 
       res => {
         this.result_cat = res.result;
         console.log("result_cat",this.result_cat);
-        this.loadingService.dismiss();
+       // this.loadingService.dismiss();
         console.log("afterrrrrrrrrrrr");
         this.visibleKey = true;
       },
     error => {
       console.log("error::::"+error);
-      this.loadingService.dismiss();
+      //this.loadingService.dismiss();
       this.visibleKey = true;
       this.toasterService.showToast(error.error.msg,2000)
 
@@ -106,20 +107,20 @@ export class HomePage implements OnInit {
   }
   readProducts()
   {
-    this.loadingService.present();
+    //this.loadingService.present();
     //this.categories =[];
     this.productService.readProducts().subscribe( 
       res => {
         this.result = res.result;
         //this.result_slide = res.result;
         console.log("result",this.result);
-        this.loadingService.dismiss();
+        //this.loadingService.dismiss();
         console.log("afterrrrrrrrrrrr");
         this.visibleKey = true;
       },
     error => {
       console.log("error::::"+error);
-      this.loadingService.dismiss();
+      //this.loadingService.dismiss();
       this.visibleKey = true;
       this.toasterService.showToast(error.error.msg,2000)
 

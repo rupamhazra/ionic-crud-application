@@ -1,0 +1,48 @@
+<app-header></app-header>
+<ion-content>
+  <ion-list *ngIf="products_exits_on_cart">
+    <ion-card  *ngFor="let item of productList" class="_c_card-cl-bag _c_card-cl-ma-r-l-b-n">
+        <ion-grid>
+            <ion-row>
+              <ion-col size="8">
+                <ion-card-header>
+                    <ion-card-title>{{item.name}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-card-title><i class="fa fa-rupee"></i>{{item.unit_price}} </ion-card-title>
+                </ion-card-content>
+              </ion-col>
+              <ion-col size="4">
+                  <ion-card-header>
+                      <ion-img [src]="this.media_url+item.img"></ion-img>
+                  </ion-card-header>
+                  <ion-card-content>
+                      Quantity
+                  </ion-card-content>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-segment>
+              <ion-segment-button style="border-top:1px solid #989aa2;
+              border-right:1px solid #989aa2;" layout="icon-start">
+                 <ion-label>Save For Letter</ion-label>
+                 <ion-icon name="archive"></ion-icon>
+              </ion-segment-button>
+              <ion-segment-button  style="border-top:1px solid #989aa2;" 
+              (click)="removeFromCartEvent(item.id)" layout="icon-start">
+                <ion-label>Remove</ion-label>
+                <ion-icon name="trash"></ion-icon>
+              </ion-segment-button>
+          </ion-segment>
+    </ion-card>
+  </ion-list>
+ 
+  <div *ngIf="!products_exits_on_cart" padding style="text-align: center;margin-top: 50px;">
+     
+      <ion-button  type="button" expand="" fill="outline" (click)="go_to_home()" color="tertiary">Go Back to Shop</ion-button>
+     
+      </div>
+  
+</ion-content>
+
+

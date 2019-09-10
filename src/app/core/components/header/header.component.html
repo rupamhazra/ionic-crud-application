@@ -3,14 +3,16 @@
         <ion-buttons slot="start" *ngIf="menu_button_visible">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title *ngIf="menu_button_visible" no-padding>
+          <ion-title *ngIf="title_section_visible" no-padding>
              {{title}}
           </ion-title>
         <ion-buttons slot="start" *ngIf="!menu_button_visible">
           <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-icon name="cart" slot="end" padding></ion-icon>
-        <ion-badge id="cart-badge" color="danger" size="small">{{product_count_on_cart}}</ion-badge>
+        <ion-buttons (click)="openCartPage()" slot="end" *ngIf="cart_button_visible">
+          <ion-icon name="cart" slot="end" padding></ion-icon>
+          <ion-badge id="cart-badge" color="danger" size="small" *ngIf="product_count_on_cart!=0">{{product_count_on_cart}}</ion-badge>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 

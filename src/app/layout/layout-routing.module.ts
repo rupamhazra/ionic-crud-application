@@ -13,8 +13,11 @@ const routes: Routes = [
         { path: 'products', loadChildren: './product/product.module#ProductPageModule' },
         { path: 'categories', loadChildren: './category/category.module#CategoryPageModule' },
         { path: 'myaccount', loadChildren: './myaccount/myaccount.module#MyaccountPageModule' },
+        { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
       ]
     },
+  
+
   
   
 

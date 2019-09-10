@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./category.page.scss'],
 })
 export class CategoryPage implements OnInit {
-  medie_url:any = environment.imageURL
+  media_url:any = environment.imageURL
   visibleKey: boolean = false;
   result:[];
   selectedCategory:  {};
