@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { MyaccountPage } from './myaccount.page';
 import { ComponentsModule } from "../../core/components/components.module";
+import { MyaccountRoutingModule } from './myaccount-routing.module';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
     IonicModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    MyaccountRoutingModule
   ],
   declarations: [MyaccountPage]
 })

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../core/services/modal.service';
 import { LoginPage } from './login/login.page';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myaccount',
@@ -14,6 +15,7 @@ export class MyaccountPage implements OnInit {
   constructor(
     public modalService: ModalService,
     private storage: Storage,
+    private router: Router,
   ) { 
     //this.modalService.closeModal();
     //this.modalService.openModal(LoginPage,null);
@@ -39,5 +41,8 @@ export class MyaccountPage implements OnInit {
   openLoginModal(){
     this.modalService.openModal(LoginPage,null);
   }
-  
+  goToMyaddress(){
+    console.log('ssss')
+    this.router.navigateByUrl('/myaccount/address');
+  }
 }
