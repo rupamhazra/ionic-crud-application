@@ -1,4 +1,16 @@
-ion-segment-button{
+ion-segment-button {
     --background-checked:#a189f0;
-    --color-checked:#fff;   
+    --color-checked:#fff;
+    height: 30px;
+    min-height: 30px;
+  }
+._c_select{
+    color:#000;
+    font-weight: 900;
+    opacity: 1;
+    border:1px solid #989aa2;
+    padding:5px;
+}
+ion-toolbar{
+    --background:#fff;
 }

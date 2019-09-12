@@ -26,6 +26,7 @@ export class ProductSinglePage implements OnInit {
   subImageClass:any;
   count:number = 10;
   productDetailsAdd:any = [];
+  add_to_cart_btn_visible:boolean = true;
   //modalData:any;
   constructor(
     private productService: ProductService,
@@ -42,6 +43,18 @@ export class ProductSinglePage implements OnInit {
 
   ngOnInit() {
     this.productId = this.route.snapshot.params['id']
+    this.storage.get('allProductDetailsInCart').then((val) => {
+      if(val) 
+      {
+        val.forEach(element => {
+            //console.log('element.id',element.id,this.productId)
+            if(element.id == this.productId){
+              this.add_to_cart_btn_visible = false
+              //console.log('true')
+            }
+        });
+      }
+    });
     this.readProduct();
   }
   readProduct()
@@ -82,12 +95,10 @@ export class ProductSinglePage implements OnInit {
     //event.path[0].style = "border: 2px solid red;";
     this.mainImage = image_name;
   }
-
   getProdcutSlider(id:any){
     console.log('id',id)
     this.router.navigateByUrl('/products/product-single-zoom/'+id);
   }
-
   addToCartEvent(){
     this.storage.get('allProductDetailsInCart').then((val) => {
       if(val) 
@@ -107,12 +118,14 @@ export class ProductSinglePage implements OnInit {
         this.storage.set("allProductDetailsInCart",this.productDetailsAdd);
         //this.storage.set('product_count',1)
         this.events1.publish('showProductCountOnCart', 1);
-
       }
+      this.add_to_cart_btn_visible = false
       
     });
   }
- 
+  goToCartEvent(){
+    this.router.navigateByUrl('/cart');
+  }
 }
 
 

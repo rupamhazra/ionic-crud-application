@@ -1,13 +1,12 @@
-// ion-thumbnail{
-//     --size:50px;
-// }
-._c_card_h_t{
-    padding:15px 0px 0px 0px;
-}
-._c_img_focus_b{
-    border:2px solid red;
-}
-._c_ion-segment-button-buy-now{
-    background: red;
+._c_ion-segment-button-back-tertiary{
+    background: #7044ff;
     color: #fff;
 }
+._c_ion-segment-button-back-white{
+    background: #fff;
+    color: #7044ff;
+    border-top:0.5px solid #7044ff;
+    border-bottom:0.5px solid #7044ff;
+    border-left:0.5px solid #7044ff;
+}
+

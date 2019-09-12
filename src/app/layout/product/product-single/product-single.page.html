@@ -1,5 +1,5 @@
 <app-header></app-header>
-<ion-content>
+<ion-content slot="fixed">
   <div *ngIf="visibleKey" class="products-list-div">
     <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n _c_card-cl-ma-t-n">
       <ion-img [src]="this.medie_url+mainImage" class="_c_img_m_l_r" (click)="getProdcutSlider(productDetails.id)">
@@ -47,17 +47,36 @@
       </ion-card-content>
     </ion-card>
   </div>
-  
-  </ion-content>
-  <ion-content>
-    <div>
-    <ion-segment>
-      <ion-segment-button value="friends" class="_c_ion-segment-button-buy-now">
+  <div margin-bottom>
+      <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
+        <ion-card-content>
+          <ion-text>
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical Latin literature from 45 BC, making it over 2000
+            years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+            looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+            and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
+            Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
+            Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
+            Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
+            1.10.32.
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ion-segment class="_c_footer">
+      <ion-segment-button class="_c_ion-segment-button-back-white" (click)="addToCartEvent()" *ngIf="add_to_cart_btn_visible">
+          <ion-label>Add to Cart</ion-label>
+      </ion-segment-button>
+      <ion-segment-button  class="_c_ion-segment-button-back-white" (click)="goToCartEvent()" *ngIf="!add_to_cart_btn_visible">
+            <ion-label>Go To Cart</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="_c_ion-segment-button-back-tertiary">
         <ion-label>Buy Now</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="enemies" style="color:#000;" (click)="addToCartEvent()">
-        <ion-label>Add to Cart</ion-label>
-      </ion-segment-button>
     </ion-segment>
-  </div>
+    
 </ion-content>
+
+
+  

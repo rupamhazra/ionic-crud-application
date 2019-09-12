@@ -1,6 +1,12 @@
 <app-header></app-header>
 <ion-content>
-  <ion-list *ngIf="products_exits_on_cart">
+  <div *ngIf="products_exits_on_cart">
+    <ion-card class="_c_card-cl-bag _c_card-cl-ma-r-l-b-n">
+      <ion-card-content>
+        Delivery Address
+      </ion-card-content>
+    </ion-card>
+    <ion-list>
     <ion-card  *ngFor="let item of productList" class="_c_card-cl-bag _c_card-cl-ma-r-l-b-n">
         <ion-grid>
             <ion-row>
@@ -13,11 +19,13 @@
                 </ion-card-content>
               </ion-col>
               <ion-col size="4">
-                  <ion-card-header>
+                  <ion-card-header style="padding: 0px 0px 5px 0px;" >
                       <ion-img [src]="this.media_url+item.img"></ion-img>
                   </ion-card-header>
-                  <ion-card-content>
-                      Quantity
+                  <ion-card-content no-padding>
+                      <ion-select ok-text="Ok" cancel-text="Cancel" class="_c_select" placeholder="Qty."   (change)="codeSelected()">
+                        <ion-select-option value="{{i}}" [selected] = "i==1" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</ion-select-option>
+                      </ion-select>
                   </ion-card-content>
                 </ion-col>
             </ion-row>
@@ -25,24 +33,33 @@
           <ion-segment>
               <ion-segment-button style="border-top:1px solid #989aa2;
               border-right:1px solid #989aa2;" layout="icon-start">
-                 <ion-label>Save For Letter</ion-label>
-                 <ion-icon name="archive"></ion-icon>
+                 <ion-label  no-margin style="text-transform: none;">Save For Letter</ion-label>
+                 <ion-icon name="archive"  no-margin size="small"></ion-icon>
               </ion-segment-button>
-              <ion-segment-button  style="border-top:1px solid #989aa2;" 
+              <ion-segment-button  style="border-top:1px solid #989aa2;background-color: red;color:#fff;" 
               (click)="removeFromCartEvent(item.id)" layout="icon-start">
-                <ion-label>Remove</ion-label>
-                <ion-icon name="trash"></ion-icon>
+                <ion-label no-margin style="text-transform: none;">Remove</ion-label>
+                <ion-icon name="trash" no-margin size="small"></ion-icon>
               </ion-segment-button>
           </ion-segment>
     </ion-card>
-  </ion-list>
- 
+    </ion-list>
+    <ion-card>
+      <ion-card-content>
+          Price Details Content
+      </ion-card-content>
+    </ion-card>
+   
+  </div>
   <div *ngIf="!products_exits_on_cart" padding style="text-align: center;margin-top: 50px;">
-     
       <ion-button  type="button" expand="" fill="outline" (click)="go_to_home()" color="tertiary">Go Back to Shop</ion-button>
-     
-      </div>
-  
+  </div>
 </ion-content>
-
+<ion-footer *ngIf="products_exits_on_cart" style="background-color: #fff">
+    <ion-toolbar>
+        <ion-title style="color:#000;"><i class="fa fa-rupee"></i> {{totalPrice}}</ion-title>
+        <ion-button type="button" (click)="placeOrderEvent()" color="tertiary" 
+        slot="end" style="margin: 0px 10px 0px 0px" shape="">Place Order</ion-button>
+    </ion-toolbar>
+</ion-footer>
 
