@@ -1,4 +1,5 @@
 import { Component, OnInit,NgZone  } from '@angular/core';
+declare var google
 
 @Component({
   selector: 'app-customeraddress',
@@ -42,6 +43,8 @@ export class CustomeraddressPage implements OnInit {
     this.location = item
     this.placeid = this.location.place_id
     console.log('placeid'+ this.placeid)
+    this.autocomplete.input = item.description
+    
   }
   GoTo(){
     return window.location.href = 'https://www.google.com/maps/place/?q=place_id:'+this.placeid;

@@ -43,11 +43,6 @@ import { LoginPageModule } from './layout/myaccount/login/login.module';
  */
 import { Network } from '@ionic-native/network/ngx';
 
-
-
-
-
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
