@@ -91,6 +91,8 @@ updateSearchResults(){
 }
 
 selectSearchResult(item){
+  console.log('item',item.description)
+  this.autocomplete.input = item.description
   this.clearMarkers();
   this.autocompleteItems = [];
 
