@@ -2,13 +2,20 @@
   <ion-toolbar color="primary">
     <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Search for a place"></ion-searchbar>
   </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
   <ion-list [hidden]="autocompleteItems.length == 0">
     <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
       {{ item.description }}
     </ion-item>
   </ion-list>
-</ion-header>
 
-<ion-content> 
-    <ion-button (click)="GoTo()" >Go To Selected Location</ion-button>
+  <div id='map'></div>
 </ion-content>
+
+<ion-footer>
+  <button class="geolocation-btn" ion-button full (click)="tryGeolocation()"> Try Geolocation </button>
+</ion-footer>
