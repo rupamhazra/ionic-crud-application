@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,ElementRef  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
