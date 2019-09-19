@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { NavController, Platform } from '@ionic/angular';
+import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+
 declare var google;
 @Component({
   selector: 'app-location-tracking',
@@ -14,18 +16,26 @@ export class LocationTrackingPage implements OnInit {
   //@ViewChild('map') mapElement: ElementRef;
   map: any;
   currentMapTrack = null;
- 
+  markers: any;
   isTracking = false;
   trackedRoute = [];
   previousTracks = [];
- 
   positionSubscription: Subscription;
+  geoAddress: string;
+  //Geocoder configuration
+  geoencoderOptions: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5
+  };
   constructor(
     public navCtrl: NavController, 
     private plt: Platform, 
     private geolocation: Geolocation, 
-    private storage: Storage
-  ) { }
+    private storage: Storage,
+    private nativeGeocoder: NativeGeocoder
+  ) { 
+    this.markers = [];
+  }
 
   ngOnInit() {
   }
@@ -37,13 +47,30 @@ export class LocationTrackingPage implements OnInit {
  
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.9011, lng: -56.1645},
-        zoom: 15
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        streetViewControl: true,
+        fullscreenControl: true
       });
  
-      this.geolocation.getCurrentPosition().then(pos => {
-        let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        this.map.setCenter(latLng);
+      this.geolocation.getCurrentPosition().then(resp => {
+        
+        //let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        let pos = {
+          lat: resp.coords.latitude,
+          lng: resp.coords.longitude
+        };
+        let marker = new google.maps.Marker({
+          position: pos,
+          map: this.map,
+          title: 'you are here!',
+          animation: google.maps.Animation.DROP,
+        });
+        this.markers.push(marker);
+        this.map.setCenter(pos);
         this.map.setZoom(16);
+
       }).catch((error) => {
         console.log('Error getting location', error);
       });
@@ -67,13 +94,39 @@ startTracking() {
       )
       .subscribe(data => {
         setTimeout(() => {
-          this.trackedRoute.push({ lat: data.coords.latitude, lng: data.coords.longitude });
+          let address = this.getGeoencoder(data.coords.latitude,data.coords.longitude);
+          this.trackedRoute.push({ lat: data.coords.latitude, lng: data.coords.longitude, address: address});
           this.redrawPath(this.trackedRoute);
         }, 0);
       });
  
   }
- 
+  //geocoder method to fetch address from coordinates passed as arguments
+  getGeoencoder(latitude,longitude){
+    this.nativeGeocoder.reverseGeocode(latitude, longitude, this.geoencoderOptions)
+    .then((result: NativeGeocoderResult[]) => {
+       this.geoAddress = this.generateAddress(result[0]);
+       console.log('this.geoAddress',this.geoAddress)
+       return this.geoAddress
+    })
+    .catch((error: any) => {
+      alert('Error getting location'+ JSON.stringify(error));
+    });
+  }
+  //Return Comma saperated address
+  generateAddress(addressObj){
+      let obj = [];
+      let address = "";
+      for (let key in addressObj) {
+        obj.push(addressObj[key]);
+      }
+      obj.reverse();
+      for (let val in obj) {
+        if(obj[val].length)
+        address += obj[val]+', ';
+      }
+    return address.slice(0, -2);
+  }
   redrawPath(path) {
     if (this.currentMapTrack) {
       this.currentMapTrack.setMap(null);
