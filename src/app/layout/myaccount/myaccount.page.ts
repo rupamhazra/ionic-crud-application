@@ -45,4 +45,8 @@ export class MyaccountPage implements OnInit {
     console.log('ssss')
     this.router.navigateByUrl('/myaccount/address');
   }
+  locateMe(){
+    console.log('ssss')
+    this.router.navigateByUrl('/myaccount/location-tracking');
+  }
 }
