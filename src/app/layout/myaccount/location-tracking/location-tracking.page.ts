@@ -11,7 +11,7 @@ declare var google;
   styleUrls: ['./location-tracking.page.scss'],
 })
 export class LocationTrackingPage implements OnInit {
-  @ViewChild('map') mapElement: ElementRef;
+  //@ViewChild('map') mapElement: ElementRef;
   map: any;
   currentMapTrack = null;
  
@@ -29,18 +29,16 @@ export class LocationTrackingPage implements OnInit {
 
   ngOnInit() {
   }
-  ionViewDidLoad() {
+  
+  ionViewDidEnter() {
+    
     this.plt.ready().then(() => {
       this.loadHistoricRoutes();
  
-      let mapOptions = {
-        zoom: 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false
-      }
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.9011, lng: -56.1645},
+        zoom: 15
+      });
  
       this.geolocation.getCurrentPosition().then(pos => {
         let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -103,6 +101,7 @@ startTracking() {
   }
    
   showHistoryRoute(route) {
+    console.log(route)
     this.redrawPath(route);
   }
 }
