@@ -48,6 +48,12 @@ export class HeaderComponent implements OnInit {
       this.title_section_visible = false;
       //this.title = "My Categories";
     }
+    if(this.router.url.includes('location-tracking')){
+      this.cart_button_visible = false;
+      this.menu_button_visible = false;
+      this.title_section_visible = true;
+      this.title = "GPS Tracking";
+    }
 
     /**
      * Thease event fire from product-single-page.ts file to show product count on badge.
