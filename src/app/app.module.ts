@@ -43,6 +43,11 @@ import { LoginPageModule } from './layout/myaccount/login/login.module';
  */
 import { Network } from '@ionic-native/network/ngx';
 
+/**
+ * For Firebae Notification
+ */
+import { FCM } from '@ionic-native/fcm/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -72,7 +77,8 @@ import { Network } from '@ionic-native/network/ngx';
     FilePath,
     Geolocation,
     NativeGeocoder,
-    Network
+    Network,
+    FCM
     
     
   ],

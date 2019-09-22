@@ -10,6 +10,8 @@ const routes: Routes = [
     path: 'location-tracking', 
     loadChildren: './location-tracking/location-tracking.module#LocationTrackingPageModule' 
   },
+  { path: 'firebase', loadChildren: './firebase/firebase.module#FirebasePageModule' },
+
   
 
 ];

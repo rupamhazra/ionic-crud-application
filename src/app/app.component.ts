@@ -14,13 +14,19 @@ import { NetworkService } from './core/services/network.service';
 
 import { NavController } from '@ionic/angular';
 
-//import { AlertService } from './core/services/alert.service';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { NavigationExtras } from '@angular/router';
+
+import { FcmService } from './core/services/fcm.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  pushes: any;
+  token:any;
+  result_fcm_add:any;
   public onlineOffline: boolean = navigator.onLine;
   logout_visible:boolean = false
   login_visible:boolean = false
@@ -58,7 +64,7 @@ export class AppComponent {
       chileMenu:[]
     },
   ];
-
+  
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -68,14 +74,71 @@ export class AppComponent {
     private menuCtrl: MenuController,
     private storage: Storage,
     public networkService: NetworkService,
-    private navCtrl:NavController
+    private navCtrl:NavController,
+    private fcm: FCM,
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.storage.get('firstTime').then((val) => {
+        console.log('val',val)
+        if (typeof val === 'undefined' || val === null)
+        {
+            // Execute some code for the installation
+            // ...
+            console.log('val',val)
+            this.storage.set('firstTime', 1);
+        }
+              
+       });
       
+
+
+      /**
+       * Firebase used
+       */
+
+      this.fcm.onNotification().subscribe(data => {
+        if (data.wasTapped) {
+         
+          console.log("Received in background");
+          //console.log(JSON.parse(this.pushes))
+          this.router.navigate(['/myaccount/firebase', { pushes: JSON.stringify(data) }]);
+          
+        } else {
+          console.log(data)
+          console.log("Received in foreground");
+          //console.log(JSON.parse(this.pushes))
+          this.router.navigate(['/myaccount/firebase', { pushes: JSON.stringify(data) }]);
+        };
+      });
+
+      this.fcm.onTokenRefresh().subscribe(token => {
+        // Register your new token in your back-end if you want
+        // backend.registerToken(token);
+      });
+
+      this.fcm.getToken().then(token => {
+        console.log('tone',token)
+        this.token = token
+        // let data = {
+        //   'fcm_token':this.token,
+        //   'device_details':''
+        // }
+        // this.fcmService.sendMessage(data).subscribe( 
+        //   res => {
+           
+        //     this.result_fcm_add = res.result;
+        //     console.log("result_fcm",this.result_fcm_add);
+        //   },
+        // error => {
+        //   console.log("error::::"+error);
+        // });
+       });
+
+
       this.networkService.checkNetworkDisconnect();
       window.addEventListener('offline', () => {
         this.networkService.checkNetworkDisconnect();

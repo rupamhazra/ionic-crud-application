@@ -63,16 +63,6 @@ export class LocationTrackingPage implements OnInit {
         };
         let marker = new google.maps.Marker({
           position: pos,
-          icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 18,
-            strokeColor: '#fff',
-            fillColor: '#7044ff',
-            strokeWeight: 15,
-            fillOpacity: 1.0,
-            //anchor: new google.maps.Point(12, 24),
-            
-          },
           map: this.map,
           title: 'you are here!',
           animation: google.maps.Animation.DROP,
@@ -96,6 +86,7 @@ export class LocationTrackingPage implements OnInit {
   }
   
 startTracking() {
+    let point_nember = 1;
     this.map.setZoom(18);
     this.isTracking = true;
     this.trackedRoute = [];
@@ -106,7 +97,15 @@ startTracking() {
       .subscribe(data => {
         setTimeout(() => {
           this.getGeoencoder(data.coords.latitude,data.coords.longitude);
-          this.trackedRoute.push({ lat: data.coords.latitude, lng: data.coords.longitude, address: this.geoAddress});
+          
+          this.trackedRoute.push(
+            { lat: data.coords.latitude, 
+              lng: data.coords.longitude, 
+              address: this.geoAddress,
+              point_number:point_nember
+            }
+            );
+            point_nember ++;
           this.redrawPath(this.trackedRoute);
         }, 0);
       });
@@ -148,9 +147,14 @@ startTracking() {
  
     if (path.length > 1) {
       var lineSymbol = {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 8,
-        strokeColor: '#7044ff'
+        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+        scale: 5,
+        strokeColor: '#fff',
+        fillColor: 'red',
+        strokeWeight: 5,
+        fillOpacity: 1.0,
+        //anchor: new google.maps.Point(12, 24),
+        
       };
       this.currentMapTrack = new google.maps.Polyline({
         path: path,

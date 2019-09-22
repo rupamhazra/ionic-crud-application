@@ -49,4 +49,8 @@ export class MyaccountPage implements OnInit {
     console.log('ssss')
     this.router.navigateByUrl('/myaccount/location-tracking');
   }
+  firebase(){
+    console.log('ssss')
+    this.router.navigateByUrl('/myaccount/firebase');
+  }
 }

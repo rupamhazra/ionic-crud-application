@@ -25,5 +25,13 @@
       </ion-title>
   </ion-card>
   </div>
+  <div *ngIf="visible_myaccount_details_div">
+    <ion-card>
+      <img src="/assets/shapes.svg" alt="" />
+      <ion-title (click)="firebase()">
+        Firbase
+      </ion-title>
+  </ion-card>
+  </div>
     
 </ion-content>

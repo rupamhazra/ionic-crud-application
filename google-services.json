@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "129531736431",
+    "firebase_url": "https://ionic-76388.firebaseio.com",
+    "project_id": "ionic-76388",
+    "storage_bucket": "ionic-76388.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129531736431:android:f4bf99add01f0fecbdb89a",
+        "android_client_info": {
+          "package_name": "com.rskart.commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129531736431-j645r9mbrt0keks86kjlfeo1hl0av61r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoZu5t0d1TZWrwDt2PVFAmc3OSUYbPkwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129531736431-j645r9mbrt0keks86kjlfeo1hl0av61r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
