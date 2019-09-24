@@ -76,20 +76,59 @@ export class AppComponent {
     public networkService: NetworkService,
     private navCtrl:NavController,
     private fcm: FCM,
+    public fcmServce : FcmService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      this.fcm.getToken().then(token => {
+        console.log('tone',token)
+        this.token = token
+        // let data = {
+        //   'fcm_token':this.token,
+        //   'device_details':''
+        // }
+        // this.fcmService.sendMessage(data).subscribe( 
+        //   res => {
+           
+        //     this.result_fcm_add = res.result;
+        //     console.log("result_fcm",this.result_fcm_add);
+        //   },
+        // error => {
+        //   console.log("error::::"+error);
+        // });
+       });
+
+
       this.storage.get('firstTime').then((val) => {
         console.log('val',val)
         if (typeof val === 'undefined' || val === null)
         {
             // Execute some code for the installation
-            // ...
+            let data = {
+              "token":this.token
+            }
+            this.fcmService.addDeviceDetailsWithDeviceToken(data).subscribe( 
+              res => {
+                //this.result = res.result;
+                //this.result_fcm = res.result;
+                console.log("result_devive_token",res);
+                // this.loadingService.dismiss();
+                // console.log("afterrrrrrrrrrrr");
+                // this.visibleKey = true;
+              },
+            error => {
+              console.log("error::::"+error);
+              // this.loadingService.dismiss();
+              // this.visibleKey = true;
+              //this.toasterService.showToast(error.error.msg,2000)
+        
+            });
             console.log('val',val)
-            this.storage.set('firstTime', 1);
+            //this.storage.set('firstTime', 1);
         }
               
        });
@@ -120,23 +159,7 @@ export class AppComponent {
         // backend.registerToken(token);
       });
 
-      this.fcm.getToken().then(token => {
-        console.log('tone',token)
-        this.token = token
-        // let data = {
-        //   'fcm_token':this.token,
-        //   'device_details':''
-        // }
-        // this.fcmService.sendMessage(data).subscribe( 
-        //   res => {
-           
-        //     this.result_fcm_add = res.result;
-        //     console.log("result_fcm",this.result_fcm_add);
-        //   },
-        // error => {
-        //   console.log("error::::"+error);
-        // });
-       });
+      
 
 
       this.networkService.checkNetworkDisconnect();
