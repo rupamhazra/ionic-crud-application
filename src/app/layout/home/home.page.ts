@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
     
 
     
-    console.log('this.router.url', this.router.url);
+    //console.log('this.router.url', this.router.url);
     this.title = this.router.url;
     this.storage.get('USER_INFO').then((val) => {
 
@@ -70,9 +70,9 @@ export class HomePage implements OnInit {
       res => {
         //this.result = res.result;
         this.result_slide = res.result;
-        console.log("result_slide",this.result_slide);
+        //console.log("result_slide",this.result_slide);
         this.loadingService.dismiss();
-        console.log("afterrrrrrrrrrrr");
+        //console.log("afterrrrrrrrrrrr");
         this.visibleKey = true;
       },
     error => {
@@ -91,9 +91,9 @@ export class HomePage implements OnInit {
     this.categoryService.readCategories().subscribe( 
       res => {
         this.result_cat = res.result;
-        console.log("result_cat",this.result_cat);
+        //console.log("result_cat",this.result_cat);
        // this.loadingService.dismiss();
-        console.log("afterrrrrrrrrrrr");
+        //console.log("afterrrrrrrrrrrr");
         this.visibleKey = true;
       },
     error => {
@@ -113,9 +113,9 @@ export class HomePage implements OnInit {
       res => {
         this.result = res.result;
         //this.result_slide = res.result;
-        console.log("result",this.result);
+        //console.log("result",this.result);
         //this.loadingService.dismiss();
-        console.log("afterrrrrrrrrrrr");
+        //console.log("afterrrrrrrrrrrr");
         this.visibleKey = true;
       },
     error => {

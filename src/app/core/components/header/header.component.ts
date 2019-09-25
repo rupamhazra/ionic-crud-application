@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
      */
     this.events2.subscribe('showProductCountOnCart', (data) =>{
       
-      console.log(data); // 👋 Hello from page1!
+     // console.log(data); // 👋 Hello from page1!
       this.product_count_on_cart = data
     });
 
@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openCartPage(){
-    console.log('opencartPage');
+    //console.log('opencartPage');
     this.router.navigateByUrl('/cart');
   }
 }

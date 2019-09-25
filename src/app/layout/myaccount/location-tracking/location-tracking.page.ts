@@ -162,10 +162,10 @@ startTracking() {
         strokeColor: '#7044ff',
         strokeOpacity: 1.0,
         strokeWeight: 3,
-        icons: [{
-          icon: lineSymbol,
-          offset: '100%'
-        }],
+        // icons: [{
+        //   icon: lineSymbol,
+        //   offset: '100%'
+        // }],
       });
       this.currentMapTrack.setMap(this.map);
     }

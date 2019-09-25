@@ -19,6 +19,8 @@ import { NavigationExtras } from '@angular/router';
 
 import { FcmService } from './core/services/fcm.service';
 
+import { Device } from '@ionic-native/device/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -76,7 +78,8 @@ export class AppComponent {
     public networkService: NetworkService,
     private navCtrl:NavController,
     private fcm: FCM,
-    public fcmServce : FcmService
+    public fcmService : FcmService,
+    private device: Device
   ) {
     this.initializeApp();
   }
@@ -109,7 +112,17 @@ export class AppComponent {
         {
             // Execute some code for the installation
             let data = {
-              "token":this.token
+              "token":this.token,
+              "device_details": { 
+                "uuid": this.device.uuid, 
+                "model": this.device.model,
+                "platform": this.device.platform,
+                "serial": this.device.serial,
+                "version": this.device.version,
+                "manufacturer": this.device.manufacturer
+              },
+              
+              
             }
             this.fcmService.addDeviceDetailsWithDeviceToken(data).subscribe( 
               res => {
@@ -119,7 +132,7 @@ export class AppComponent {
                 // this.loadingService.dismiss();
                 // console.log("afterrrrrrrrrrrr");
                 // this.visibleKey = true;
-              },
+            },
             error => {
               console.log("error::::"+error);
               // this.loadingService.dismiss();
@@ -127,8 +140,8 @@ export class AppComponent {
               //this.toasterService.showToast(error.error.msg,2000)
         
             });
-            console.log('val',val)
-            //this.storage.set('firstTime', 1);
+            //console.log('val',val)
+            this.storage.set('firstTime', 1);
         }
               
        });
@@ -147,7 +160,7 @@ export class AppComponent {
           this.router.navigate(['/myaccount/firebase', { pushes: JSON.stringify(data) }]);
           
         } else {
-          console.log(data)
+          //console.log(data)
           console.log("Received in foreground");
           //console.log(JSON.parse(this.pushes))
           this.router.navigate(['/myaccount/firebase', { pushes: JSON.stringify(data) }]);

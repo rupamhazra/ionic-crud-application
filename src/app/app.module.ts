@@ -48,6 +48,8 @@ import { Network } from '@ionic-native/network/ngx';
  */
 import { FCM } from '@ionic-native/fcm/ngx';
 
+import { Device } from '@ionic-native/device/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -78,7 +80,8 @@ import { FCM } from '@ionic-native/fcm/ngx';
     Geolocation,
     NativeGeocoder,
     Network,
-    FCM
+    FCM,
+    Device
     
     
   ],

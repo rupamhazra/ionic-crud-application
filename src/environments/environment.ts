@@ -6,7 +6,8 @@
 // export const environment = {
 //   production: false,
 //   apiEndpoint: 'http://192.168.24.208/ionic-api/api/',
-//   imageURL: 'http://192.168.24.208/ionic-api/media/'
+//   imageURL: 'http://192.168.24.208/ionic-api/media/',
+//   fcmEndpoint: 'https://fcm.googleapis.com/fcm/'
 // };
 
 /************* Staging ********************/
