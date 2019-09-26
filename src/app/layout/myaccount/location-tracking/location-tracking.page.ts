@@ -7,6 +7,7 @@ import { NavController, Platform } from '@ionic/angular';
 import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 
 declare var google;
+declare var window;
 @Component({
   selector: 'app-location-tracking',
   templateUrl: './location-tracking.page.html',
@@ -14,6 +15,7 @@ declare var google;
 })
 export class LocationTrackingPage implements OnInit {
   //@ViewChild('map') mapElement: ElementRef;
+  locations : any;
   map: any;
   currentMapTrack = null;
   markers: any;
@@ -35,6 +37,7 @@ export class LocationTrackingPage implements OnInit {
     private nativeGeocoder: NativeGeocoder
   ) { 
     this.markers = [];
+    this.locations = [];
   }
 
   ngOnInit() {
@@ -86,29 +89,30 @@ export class LocationTrackingPage implements OnInit {
   }
   
 startTracking() {
-    let point_nember = 1;
-    this.map.setZoom(18);
-    this.isTracking = true;
-    this.trackedRoute = [];
-    this.positionSubscription = this.geolocation.watchPosition()
-      .pipe(
-        filter((p) => p.coords !== undefined) //Filter Out Errors
-      )
-      .subscribe(data => {
-        setTimeout(() => {
-          this.getGeoencoder(data.coords.latitude,data.coords.longitude);
+    window.app.backgroundGeolocation.start();
+    // let point_nember = 1;
+    // this.map.setZoom(18);
+    // this.isTracking = true;
+    // this.trackedRoute = [];
+    // this.positionSubscription = this.geolocation.watchPosition()
+    //   .pipe(
+    //     filter((p) => p.coords !== undefined) //Filter Out Errors
+    //   )
+    //   .subscribe(data => {
+    //     setTimeout(() => {
+    //       this.getGeoencoder(data.coords.latitude,data.coords.longitude);
           
-          this.trackedRoute.push(
-            { lat: data.coords.latitude, 
-              lng: data.coords.longitude, 
-              address: this.geoAddress,
-              point_number:point_nember
-            }
-            );
-            point_nember ++;
-          this.redrawPath(this.trackedRoute);
-        }, 0);
-      });
+    //       this.trackedRoute.push(
+    //         { lat: data.coords.latitude, 
+    //           lng: data.coords.longitude, 
+    //           address: this.geoAddress,
+    //           point_number:point_nember
+    //         }
+    //         );
+    //         point_nember ++;
+    //       this.redrawPath(this.trackedRoute);
+    //     }, 0);
+    //   });
  
   }
 
@@ -171,17 +175,22 @@ startTracking() {
     }
   }
   stopTracking() {
-    let newRoute = { finished: new Date().getTime(), path: this.trackedRoute };
-    this.previousTracks.push(newRoute);
-    this.storage.set('routes', this.previousTracks);
+    window.app.backgroundGeolocation.stop();
+    // let newRoute = { finished: new Date().getTime(), path: this.trackedRoute };
+    // this.previousTracks.push(newRoute);
+    // this.storage.set('routes', this.previousTracks);
    
-    this.isTracking = false;
-    this.positionSubscription.unsubscribe();
-    this.currentMapTrack.setMap(null);
+    // this.isTracking = false;
+    // this.positionSubscription.unsubscribe();
+    // this.currentMapTrack.setMap(null);
   }
    
   showHistoryRoute(route) {
     console.log(route)
     this.redrawPath(route);
+  }
+
+  GetLocations(){
+    this.locations = (JSON.parse(localStorage.getItem("location"))==null?[]:JSON.parse(localStorage.getItem("location")));
   }
 }

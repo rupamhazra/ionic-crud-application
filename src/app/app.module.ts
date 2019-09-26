@@ -28,6 +28,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 /** 
  * Get Current Address and tracking
 */
+import { BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
@@ -49,6 +50,9 @@ import { Network } from '@ionic-native/network/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 
 import { Device } from '@ionic-native/device/ngx';
+
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -77,11 +81,13 @@ import { Device } from '@ionic-native/device/ngx';
     File,
     WebView,
     FilePath,
+    BackgroundGeolocation,
     Geolocation,
     NativeGeocoder,
     Network,
     FCM,
-    Device
+    Device,
+    
     
     
   ],

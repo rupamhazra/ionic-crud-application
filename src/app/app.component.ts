@@ -21,32 +21,39 @@ import { FcmService } from './core/services/fcm.service';
 
 import { Device } from '@ionic-native/device/ngx';
 
+import {
+  BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationEvents,
+  BackgroundGeolocationResponse
+} from '@ionic-native/background-geolocation/ngx';
+
+declare var window;
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  arr: any;
   pushes: any;
-  token:any;
-  result_fcm_add:any;
+  token: any;
+  result_fcm_add: any;
   public onlineOffline: boolean = navigator.onLine;
-  logout_visible:boolean = false
-  login_visible:boolean = false
-  public name:any
-  public profile_img:any
-  medie_url:any = environment.imageURL
-  visibility:any
+  logout_visible: boolean = false
+  login_visible: boolean = false
+  public name: any
+  public profile_img: any
+  medie_url: any = environment.imageURL
+  visibility: any
   public appPages = [
     {
       title: 'Categories',
       url: '/categories',
       icon: 'ios-list-box',
-      chileMenu:[]
+      chileMenu: []
     },
     {
       title: 'Products',
       class: 'child-active',
-      chileMenu:[
+      chileMenu: [
         {
           title: 'List',
           url: '/products/product-list',
@@ -63,10 +70,10 @@ export class AppComponent {
       title: 'My account',
       url: '/myaccount',
       icon: 'ios-person',
-      chileMenu:[]
+      chileMenu: []
     },
   ];
-  
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -76,76 +83,63 @@ export class AppComponent {
     private menuCtrl: MenuController,
     private storage: Storage,
     public networkService: NetworkService,
-    private navCtrl:NavController,
+    private navCtrl: NavController,
     private fcm: FCM,
-    public fcmService : FcmService,
-    private device: Device
+    public fcmService: FcmService,
+    private device: Device,
+    private backgroundGeolocation: BackgroundGeolocation
   ) {
+    this.arr = [];
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-
       this.fcm.getToken().then(token => {
-        console.log('tone',token)
+        console.log('tone', token)
         this.token = token
-        // let data = {
-        //   'fcm_token':this.token,
-        //   'device_details':''
-        // }
-        // this.fcmService.sendMessage(data).subscribe( 
-        //   res => {
-           
-        //     this.result_fcm_add = res.result;
-        //     console.log("result_fcm",this.result_fcm_add);
-        //   },
-        // error => {
-        //   console.log("error::::"+error);
-        // });
-       });
+      });
 
 
       this.storage.get('firstTime').then((val) => {
-        console.log('val',val)
-        if (typeof val === 'undefined' || val === null)
-        {
-            // Execute some code for the installation
-            let data = {
-              "token":this.token,
-              "device_details": { 
-                "uuid": this.device.uuid, 
-                "model": this.device.model,
-                "platform": this.device.platform,
-                "serial": this.device.serial,
-                "version": this.device.version,
-                "manufacturer": this.device.manufacturer
-              },
-              
-              
-            }
-            this.fcmService.addDeviceDetailsWithDeviceToken(data).subscribe( 
-              res => {
-                //this.result = res.result;
-                //this.result_fcm = res.result;
-                console.log("result_devive_token",res);
-                // this.loadingService.dismiss();
-                // console.log("afterrrrrrrrrrrr");
-                // this.visibleKey = true;
+        console.log('val', val)
+        if (typeof val === 'undefined' || val === null) {
+          // Execute some code for the installation
+          let data = {
+            "token": this.token,
+            "device_details": {
+              "uuid": this.device.uuid,
+              "model": this.device.model,
+              "platform": this.device.platform,
+              "serial": this.device.serial,
+              "version": this.device.version,
+              "manufacturer": this.device.manufacturer
+            },
+
+
+          }
+          this.fcmService.addDeviceDetailsWithDeviceToken(data).subscribe(
+            res => {
+              //this.result = res.result;
+              //this.result_fcm = res.result;
+              console.log("result_devive_token", res);
+              // this.loadingService.dismiss();
+              // console.log("afterrrrrrrrrrrr");
+              // this.visibleKey = true;
             },
             error => {
-              console.log("error::::"+error);
+              console.log("error::::" + error);
               // this.loadingService.dismiss();
               // this.visibleKey = true;
               //this.toasterService.showToast(error.error.msg,2000)
-        
+
             });
-            //console.log('val',val)
-            this.storage.set('firstTime', 1);
+          //console.log('val',val)
+          this.storage.set('firstTime', 1);
         }
-              
-       });
-      
+
+      });
+
 
 
       /**
@@ -154,11 +148,11 @@ export class AppComponent {
 
       this.fcm.onNotification().subscribe(data => {
         if (data.wasTapped) {
-         
+
           console.log("Received in background");
           //console.log(JSON.parse(this.pushes))
           this.router.navigate(['/myaccount/firebase', { pushes: JSON.stringify(data) }]);
-          
+
         } else {
           //console.log(data)
           console.log("Received in foreground");
@@ -172,7 +166,7 @@ export class AppComponent {
         // backend.registerToken(token);
       });
 
-      
+
 
 
       this.networkService.checkNetworkDisconnect();
@@ -181,7 +175,35 @@ export class AppComponent {
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
+      const config: BackgroundGeolocationConfig = {
+        desiredAccuracy: 10,
+        stationaryRadius: 20,
+        distanceFilter: 30,
+        debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+        stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      };
+      this.backgroundGeolocation.configure(config).then(() => {
+
+        this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe(
+          (location: BackgroundGeolocationResponse) => {
+            console.log(location);
+            var locationstr = localStorage.getItem("location");
+            if (locationstr == null) {
+              this.arr.push(location);
+            } else {
+              var locationarr = JSON.parse(locationstr);
+              this.arr = locationstr
+            }
+            localStorage.setItem("location", JSON.stringify(this.arr));
+            // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+            // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
+            // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+            //this.backgroundGeolocation.finish(); // FOR IOS ONLY
+          });
+
+      });
+      window.app = this
+
       // this.authenticationService.authState.subscribe(state => {
       //   if (state) {
       //     this.menuCtrl.enable(true);
@@ -200,17 +222,13 @@ export class AppComponent {
       // });
     });
   }
-  logoutUser(){
+  logoutUser() {
     this.menuCtrl.enable(false);
     this.authenticationService.logout();
   }
-  logIn(){
+  logIn() {
     //this.menuCtrl.enable(false);
     this.router.navigateByUrl('/login');
   }
-  goHome(){
-    
-    
-    //this.navCtrl.setDirection()    
-  }
+
 }
