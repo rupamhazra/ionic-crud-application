@@ -21,10 +21,10 @@ import { FcmService } from './core/services/fcm.service';
 
 import { Device } from '@ionic-native/device/ngx';
 
-import {
-  BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationEvents,
-  BackgroundGeolocationResponse
-} from '@ionic-native/background-geolocation/ngx';
+// import {
+//   BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationEvents,
+//   BackgroundGeolocationResponse
+// } from '@ionic-native/background-geolocation/ngx';
 
 declare var window;
 @Component({
@@ -87,7 +87,7 @@ export class AppComponent {
     private fcm: FCM,
     public fcmService: FcmService,
     private device: Device,
-    private backgroundGeolocation: BackgroundGeolocation
+    //private backgroundGeolocation: BackgroundGeolocation
   ) {
     this.arr = [];
     this.initializeApp();
@@ -175,34 +175,36 @@ export class AppComponent {
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      const config: BackgroundGeolocationConfig = {
-        desiredAccuracy: 10,
-        stationaryRadius: 20,
-        distanceFilter: 30,
-        debug: true, //  enable this hear sounds for background-geolocation life-cycle.
-        stopOnTerminate: false, // enable this to clear background location settings when the app terminates
-      };
-      this.backgroundGeolocation.configure(config).then(() => {
 
-        this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe(
-          (location: BackgroundGeolocationResponse) => {
-            console.log(location);
-            var locationstr = localStorage.getItem("location");
-            if (locationstr == null) {
-              this.arr.push(location);
-            } else {
-              var locationarr = JSON.parse(locationstr);
-              this.arr = locationstr
-            }
-            localStorage.setItem("location", JSON.stringify(this.arr));
-            // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
-            // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
-            // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-            //this.backgroundGeolocation.finish(); // FOR IOS ONLY
-          });
 
-      });
-      window.app = this
+      // const config: BackgroundGeolocationConfig = {
+      //   desiredAccuracy: 10,
+      //   stationaryRadius: 20,
+      //   distanceFilter: 30,
+      //   debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+      //   stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+      // };
+      // this.backgroundGeolocation.configure(config).then(() => {
+
+      //   this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe(
+      //     (location: BackgroundGeolocationResponse) => {
+      //       console.log(location);
+      //       var locationstr = localStorage.getItem("location");
+      //       if (locationstr == null) {
+      //         this.arr.push(location);
+      //       } else {
+      //         var locationarr = JSON.parse(locationstr);
+      //         this.arr = locationstr
+      //       }
+      //       localStorage.setItem("location", JSON.stringify(this.arr));
+      //       // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+      //       // and the background-task may be completed.  You must do this regardless if your operations are successful or not.
+      //       // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+      //       //this.backgroundGeolocation.finish(); // FOR IOS ONLY
+      //     });
+
+      // });
+      //window.app = this
 
       // this.authenticationService.authState.subscribe(state => {
       //   if (state) {

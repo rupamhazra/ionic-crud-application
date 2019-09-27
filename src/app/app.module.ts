@@ -28,7 +28,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 /** 
  * Get Current Address and tracking
 */
-import { BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
+//import { BackgroundGeolocation} from '@ionic-native/background-geolocation/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
@@ -81,7 +81,7 @@ import { Device } from '@ionic-native/device/ngx';
     File,
     WebView,
     FilePath,
-    BackgroundGeolocation,
+    //BackgroundGeolocation,
     Geolocation,
     NativeGeocoder,
     Network,
