@@ -26,6 +26,8 @@ import { Device } from '@ionic-native/device/ngx';
 //   BackgroundGeolocationResponse
 // } from '@ionic-native/background-geolocation/ngx';
 
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
 declare var window;
 @Component({
   selector: 'app-root',
@@ -87,6 +89,7 @@ export class AppComponent {
     private fcm: FCM,
     public fcmService: FcmService,
     private device: Device,
+    private backgroundMode: BackgroundMode
     //private backgroundGeolocation: BackgroundGeolocation
   ) {
     this.arr = [];
@@ -175,6 +178,24 @@ export class AppComponent {
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.backgroundMode.enable();
+      
+      if(this.backgroundMode.isActive()){
+        console.log('backgroundMode activate');
+        let data = {
+          'data':"test"
+        }
+        this.fcmService.addDemoData(data).subscribe(
+          res => {
+            console.log("result_devive_token", res);
+          },
+          error => {
+            console.log("error::::" + error);
+          });
+      }
+        
+      
+      
 
 
       // const config: BackgroundGeolocationConfig = {

@@ -25,4 +25,8 @@ export class FcmService {
     console.log('data',data)
     return this.http.post(environment.apiEndpoint +'firebase.php', data);
   }
+  addDemoData(data:any): Observable<any>{
+    console.log('data',data)
+    return this.http.post(environment.apiEndpoint +'firebase.php', data);
+  }
 }

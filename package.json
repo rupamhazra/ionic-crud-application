@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.2",
+    "@ionic-native/background-mode": "^5.14.0",
     "@ionic-native/camera": "^5.11.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/crop": "^5.11.0",
@@ -41,6 +42,7 @@
     "@types/googlemaps": "^3.37.6",
     "cordova-android": "^8.1.0",
     "cordova-android-play-services-gradle-release": "^4.0.0",
+    "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.3",
@@ -177,7 +179,8 @@
         "PLAY-SERVICES-VISION-IMAGE-LABEL": "18.0.0",
         "PLAY-SERVICES-WALLET": "17.0.0",
         "PLAY-SERVICES-WEARABLE": "17.0.0"
-      }
+      },
+      "cordova-plugin-background-mode": {}
     },
     "platforms": [
       "android"
