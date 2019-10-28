@@ -181,17 +181,22 @@ export class AppComponent {
       this.backgroundMode.enable();
       
       if(this.backgroundMode.isActive()){
-        console.log('backgroundMode activate');
         let data = {
           'data':"test"
         }
-        this.fcmService.addDemoData(data).subscribe(
-          res => {
-            console.log("result_devive_token", res);
-          },
-          error => {
-            console.log("error::::" + error);
-          });
+        console.log('backgroundMode activate');
+        // this.backgroundMode.on("activate").subscribe(()=>{
+          
+        
+        // this.fcmService.addDemoData(data).subscribe(
+        //   res => {
+        //     console.log("result_devive_token", res);
+        //   },
+        //   error => {
+        //     console.log("error::::" + error);
+        //   });
+        // });
+        
       }
         
       
@@ -236,7 +241,7 @@ export class AppComponent {
       //       this.name = val.name
       //       this.profile_img = val.img
       //     });
-      //     this.router.navigateByUrl('/dashboard');
+      //     
       //   } else {
       //     this.logout_visible = false;
       //     this.login_visible = true;
