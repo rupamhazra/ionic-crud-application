@@ -180,6 +180,7 @@ export class AppComponent {
       this.splashScreen.hide();
       this.backgroundMode.enable();
       
+<<<<<<< HEAD
       
       this.backgroundMode.on('activate').subscribe(()=>{
           console.log('backgroundMode activate');
@@ -198,6 +199,26 @@ export class AppComponent {
       
           
       
+=======
+      if(this.backgroundMode.isActive()){
+        let data = {
+          'data':"test"
+        }
+        console.log('backgroundMode activate');
+        // this.backgroundMode.on("activate").subscribe(()=>{
+          
+        
+        // this.fcmService.addDemoData(data).subscribe(
+        //   res => {
+        //     console.log("result_devive_token", res);
+        //   },
+        //   error => {
+        //     console.log("error::::" + error);
+        //   });
+        // });
+        
+      }
+>>>>>>> 335bc342b66c2954af00abe7a7b8ed9688c1293e
         
       
       
@@ -241,7 +262,7 @@ export class AppComponent {
       //       this.name = val.name
       //       this.profile_img = val.img
       //     });
-      //     this.router.navigateByUrl('/dashboard');
+      //     
       //   } else {
       //     this.logout_visible = false;
       //     this.login_visible = true;
