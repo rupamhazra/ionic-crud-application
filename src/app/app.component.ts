@@ -180,19 +180,24 @@ export class AppComponent {
       this.splashScreen.hide();
       this.backgroundMode.enable();
       
-      if(this.backgroundMode.isActive()){
-        console.log('backgroundMode activate');
-        let data = {
-          'data':"test"
-        }
-        this.fcmService.addDemoData(data).subscribe(
-          res => {
-            console.log("result_devive_token", res);
-          },
-          error => {
-            console.log("error::::" + error);
-          });
-      }
+      
+      this.backgroundMode.on('activate').subscribe(()=>{
+          console.log('backgroundMode activate');
+            let data = {
+              'data':"test"
+            }
+            this.fcmService.addDemoData(data).subscribe(
+              res => {
+                console.log("result_devive_token", res);
+              },
+              error => {
+                console.log("error::::" + error);
+              });
+      });
+       
+      
+          
+      
         
       
       
