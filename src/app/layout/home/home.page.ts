@@ -7,6 +7,7 @@ import { SliderService } from '../../core/services/slider.service';
 import { environment } from 'src/environments/environment';
 import { LoadingService } from '../../core/services/loading.service';
 import { ToasterService } from '../../core/services/toaster.service';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import { ToasterService } from '../../core/services/toaster.service';
   styleUrls: ['./home.page.scss','../layout.page.scss'],
 })
 export class HomePage implements OnInit {
-
+  color: string = 'green';
   name:any;
   title:any;
   medie_url:any = environment.imageURL
@@ -42,11 +43,30 @@ export class HomePage implements OnInit {
     private toasterService: ToasterService,
     private categoryService: CategoryService,
     private sliderService: SliderService,
+    private speechRecognition: SpeechRecognition
     
   ) { }
 
   ngOnInit() {
     
+    /**
+     * Speech recoganisation
+     */
+    // Check feature available
+    this.speechRecognition.isRecognitionAvailable().then((available: boolean) => console.log(available))
+    
+    this.speechRecognition.hasPermission()
+      .then((hasPermission: boolean) => {
+
+        if (!hasPermission) {
+        this.speechRecognition.requestPermission()
+          .then(
+            () => console.log('Granted'),
+            () => console.log('Denied')
+          )
+        }
+
+     });
 
     
     //console.log('this.router.url', this.router.url);
@@ -62,6 +82,18 @@ export class HomePage implements OnInit {
     this.readProducts();
     //this.loadingService.dismiss();
   }
+  start() {
+    
+    this.speechRecognition.startListening()
+      .subscribe(
+        (matches: Array<string>) => {
+          console.log('matches',matches)
+          this.color = matches[0];
+        },
+        (onerror) => console.log('error:', onerror)
+      )
+
+}
   readSliders()
   {
     this.loadingService.present();

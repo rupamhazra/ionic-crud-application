@@ -89,7 +89,7 @@ export class AppComponent {
     private fcm: FCM,
     public fcmService: FcmService,
     private device: Device,
-    private backgroundMode: BackgroundMode
+    //private backgroundMode: BackgroundMode
     //private backgroundGeolocation: BackgroundGeolocation
   ) {
     this.arr = [];
@@ -178,47 +178,14 @@ export class AppComponent {
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.backgroundMode.enable();
       
-<<<<<<< HEAD
       
-      this.backgroundMode.on('activate').subscribe(()=>{
-          console.log('backgroundMode activate');
-            let data = {
-              'data':"test"
-            }
-            this.fcmService.addDemoData(data).subscribe(
-              res => {
-                console.log("result_devive_token", res);
-              },
-              error => {
-                console.log("error::::" + error);
-              });
-      });
+      
+     
        
       
           
       
-=======
-      if(this.backgroundMode.isActive()){
-        let data = {
-          'data':"test"
-        }
-        console.log('backgroundMode activate');
-        // this.backgroundMode.on("activate").subscribe(()=>{
-          
-        
-        // this.fcmService.addDemoData(data).subscribe(
-        //   res => {
-        //     console.log("result_devive_token", res);
-        //   },
-        //   error => {
-        //     console.log("error::::" + error);
-        //   });
-        // });
-        
-      }
->>>>>>> 335bc342b66c2954af00abe7a7b8ed9688c1293e
         
       
       

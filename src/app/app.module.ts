@@ -51,7 +51,9 @@ import { FCM } from '@ionic-native/fcm/ngx';
 
 import { Device } from '@ionic-native/device/ngx';
 
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+//import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 
 @NgModule({
@@ -87,7 +89,8 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
     Network,
     FCM,
     Device,
-    BackgroundMode
+    //BackgroundMode,
+    SpeechRecognition
     
     
   ],

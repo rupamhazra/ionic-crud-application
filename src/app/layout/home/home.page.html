@@ -1,5 +1,11 @@
 <app-header></app-header>
-<ion-content>
+
+ 
+
+<ion-content [color]="bgcolor">
+    <div>
+        <button ion-button (click)="start()">Say a color</button>
+    </div>
     <div *ngIf="visibleKey" class="category-list-div" margin-bottom>
       <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
           <ion-slides pager="true" [options]="slideOpts1">
