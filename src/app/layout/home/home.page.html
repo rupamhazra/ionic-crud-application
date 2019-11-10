@@ -2,9 +2,19 @@
 
  
 
-<ion-content [color]="bgcolor">
+<ion-content>
     <div>
-        <button ion-button (click)="start()">Say a color</button>
+      <!-- <button ion-button (click)="start()">Say a color</button> -->
+      <div>
+        <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+        <ion-icon ios="ios-mic" md="md-mic" style="position: absolute;top: 18px;right: 20px;" (click)="start()"></ion-icon>
+      </div>
+      
+      <ion-list *ngIf="isItemAvailable">
+        <ion-item *ngFor="let item of search_items">
+          {{ item }}
+        </ion-item>
+      </ion-list>
     </div>
     <div *ngIf="visibleKey" class="category-list-div" margin-bottom>
       <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
