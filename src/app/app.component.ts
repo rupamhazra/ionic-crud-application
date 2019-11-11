@@ -27,6 +27,7 @@ import { Device } from '@ionic-native/device/ngx';
 // } from '@ionic-native/background-geolocation/ngx';
 
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 declare var window;
 @Component({
@@ -89,8 +90,7 @@ export class AppComponent {
     private fcm: FCM,
     public fcmService: FcmService,
     private device: Device,
-    //private backgroundMode: BackgroundMode
-    //private backgroundGeolocation: BackgroundGeolocation
+    private speechRecognition: SpeechRecognition
   ) {
     this.arr = [];
     this.initializeApp();
@@ -98,6 +98,27 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      /**
+    * Speech recoganisation
+    */
+      // Check feature available
+      this.speechRecognition.isRecognitionAvailable().then((available: boolean) => console.log(available))
+
+      this.speechRecognition.hasPermission()
+        .then((hasPermission: boolean) => {
+
+          if (!hasPermission) {
+            this.speechRecognition.requestPermission()
+              .then(
+                () => console.log('Granted'),
+                () => console.log('Denied')
+              )
+          }
+
+        });
+
+
       this.fcm.getToken().then(token => {
         console.log('tone', token)
         this.token = token
@@ -178,17 +199,17 @@ export class AppComponent {
       });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
-      
-      
-     
-       
-      
-          
-      
-        
-      
-      
+
+
+
+
+
+
+
+
+
+
+
 
 
       // const config: BackgroundGeolocationConfig = {

@@ -1,52 +1,18 @@
+<app-header></app-header>
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div>
-          Id
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          Policy Number
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          Policy Amount
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          Operations
-        </div>
-      </ion-col>
-    </ion-row>
-    <div *ngIf="visibleKey">
-      <ion-row *ngFor="let policy of policies">
-        <ion-col>
-          <div>
-            {{policy.id}}
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            {{policy.number}}
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            {{policy.amount}}
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-button (click)="editProduct(policy.id)" size="small"><ion-icon name="create"></ion-icon></ion-button>
-            <ion-button (click)="deleteProduct(policy.id)" size="small"><ion-icon name="trash"></ion-icon></ion-button>
-            
-          </div>
+  <div *ngIf="visibleKey" class="products-list-div">
+    <ion-grid no-padding>
+      <ion-row >
+        <ion-col size="6" *ngFor="let each_item of result" class="_c_col">
+          <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
+            <ion-img [src]="this.medie_url+each_item.img"></ion-img>
+            <ion-card-content>
+              {{each_item.name}}
+              <ion-button fill="outline" slot="end" size="small" (click)="getProduct(each_item.id)">View</ion-button>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
-    </div>
-  </ion-grid>
+    </ion-grid>
+  </div>
 </ion-content>

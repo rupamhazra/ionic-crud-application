@@ -37,6 +37,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
  */
 import { ProductDetailsPageModule } from './layout/product/product-details/product-details.module';
 import { LoginPageModule } from './layout/myaccount/login/login.module';
+import { ProductSearchModalPageModule } from './layout/product/product-search-modal/product-search-modal.module';
 
 
 /**
@@ -69,9 +70,10 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
     IonicStorageModule.forRoot(),
     ProductDetailsPageModule,
     LoginPageModule,
-    
-    
-    
+    ProductSearchModalPageModule
+
+
+
   ],
   providers: [
     StatusBar,
@@ -91,9 +93,9 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
     Device,
     //BackgroundMode,
     SpeechRecognition
-    
-    
+
+
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
