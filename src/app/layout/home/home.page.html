@@ -1,11 +1,6 @@
 <app-header></app-header>
-
- 
-
 <ion-content>
-    <div>
-      <ion-searchbar type="text" debounce="500" (ionInput)="openSearchModal()"></ion-searchbar>
-    </div>
+   
     <div *ngIf="visibleKey" class="category-list-div" margin-bottom>
       <ion-card class="_c_card-cl-bag  _c_card-cl-ma-r-l-b-n">
           <ion-slides pager="true" [options]="slideOpts1">

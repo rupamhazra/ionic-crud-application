@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { ModalService } from '../../services/modal.service';
+import { ProductSearchModalPage } from '../../../layout/product/product-search-modal/product-search-modal.page';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +15,13 @@ export class HeaderComponent implements OnInit {
   menu_button_visible: boolean;
   cart_button_visible: boolean;
   title_section_visible: boolean;
+  search_section_visible:boolean;
   title: any;
   constructor(
     private router: Router,
     public events2: Events,
     private storage: Storage,
+    public modalService: ModalService,
   ) {
 
   }
@@ -29,6 +33,7 @@ export class HeaderComponent implements OnInit {
       this.title_section_visible = true;
       this.cart_button_visible = true;
       this.title = "RSKart";
+      this.search_section_visible = true
     }
     if (this.router.url.includes('cart')) {
       this.cart_button_visible = false;
@@ -86,5 +91,8 @@ export class HeaderComponent implements OnInit {
   openCartPage() {
     //console.log('opencartPage');
     this.router.navigateByUrl('/cart');
+  }
+  openSearchModal() {
+    this.modalService.openModal(ProductSearchModalPage, null);
   }
 }

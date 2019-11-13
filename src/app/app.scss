@@ -22,3 +22,13 @@
     padding-left: 20px;
     font-size: 16px;
 }
+/**
+    Search Bar style
+*/
+._c_search_bar .searchbar-input {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+._c_searchbar_home .searchbar-input {
+    background: whitesmoke !important;
+}

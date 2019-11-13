@@ -14,5 +14,8 @@
           <ion-badge id="cart-badge" color="danger" size="small" *ngIf="product_count_on_cart!=0">{{product_count_on_cart}}</ion-badge>
         </ion-buttons>
     </ion-toolbar>
+    <ion-toolbar *ngIf="search_section_visible">
+        <ion-searchbar type="text" debounce="500" (ionFocus)="openSearchModal()"  class="_c_searchbar_home" placeholder="Search For Products"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 

@@ -24,11 +24,8 @@ const routes: Routes = [
   { 
     path: 'product-single-zoom/:id', 
     loadChildren: './product-single-zoom/product-single-zoom.module#ProductSingleZoomPageModule' 
-  },  { path: 'productsearchmodel', loadChildren: './productsearchmodel/productsearchmodel.module#ProductsearchmodelPageModule' },
-  { path: 'product-search-model', loadChildren: './product-search-model/product-search-model.module#ProductSearchModelPageModule' },
-  { path: 'product-search-modal', loadChildren: './product-search-modal/product-search-modal.module#ProductSearchModalPageModule' },
-
-
+  },
+ 
 
   
 ];

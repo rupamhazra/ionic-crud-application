@@ -1,20 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <div>
-      <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+      <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)" class="_c_search_bar"  #input></ion-searchbar>
       <ion-icon ios="ios-mic" md="md-mic" style="position: absolute;top: 18px;right: 20px;" (click)="start()"></ion-icon>
-    </div>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <div>
     <!-- <button ion-button (click)="start()">Say a color</button> -->
-    
-    
     <ion-list *ngIf="isItemAvailable">
       <ion-item *ngFor="let item of search_items">
-        {{ item }}
+        <ion-label (click)="searchProduct(item)">{{ item.name }}</ion-label>
       </ion-item>
     </ion-list>
   </div>

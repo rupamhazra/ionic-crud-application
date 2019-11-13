@@ -9,7 +9,6 @@ import { LoadingService } from '../../core/services/loading.service';
 import { ToasterService } from '../../core/services/toaster.service';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { ModalService } from '../../core/services/modal.service';
-import { ProductSearchModalPage } from '../product/product-search-modal/product-search-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -136,7 +135,5 @@ export class HomePage implements OnInit {
     //console.log('id====',id)
     this.router.navigateByUrl('/products/product-single/' + id);
   }
-  openSearchModal() {
-    this.modalService.openModal(ProductSearchModalPage, null);
-  }
+  
 }
