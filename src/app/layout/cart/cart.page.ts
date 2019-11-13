@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.page.scss', '../layout.page.scss'],
 })
 export class CartPage implements OnInit {
+  qty:any='1';
   eachProductPrice: any = 0.00
   totalPrice: any = 0.00;
   productList: any;
@@ -70,7 +71,18 @@ export class CartPage implements OnInit {
   placeOrderEvent() {
     console.log('placeOrderEvent')
   }
-  changeQty(product_id) {
+  changeQty(product_id,event) {
+    //this.totalPrice =  0.00
+    console.log('this',event.detail.value)
     console.log('product_id', product_id)
+    this.productList.forEach(element => {
+      if (element.id == product_id){
+          var qty = parseInt(event.detail.value) - 1;
+          this.totalPrice = parseFloat(this.totalPrice) + (parseFloat(element.unit_price)*qty)
+      }
+      console.log('element', element)
+      
+      //this.eachProductPrice = element.unit_price
+    });
   }
 }
