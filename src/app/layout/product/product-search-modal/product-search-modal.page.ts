@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ModalService } from '../../../core/services/modal.service';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { ProductService } from '../../../core/services/product.service';
@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-search-modal.page.scss'],
 })
 export class ProductSearchModalPage implements OnInit {
-  @ViewChild('input') myInput ;
-  result:any;
+  @ViewChild('input') myInput;
+  result: any;
   item_s: any;
   isItemAvailable: boolean;
   search_items: any = ["Ram", "gopi", "dravid"];
@@ -30,7 +30,7 @@ export class ProductSearchModalPage implements OnInit {
      */
     setTimeout(() => {
       this.myInput.setFocus();
-    },150);
+    }, 150);
     this.readProducts()
   }
   readProducts() {
@@ -43,56 +43,65 @@ export class ProductSearchModalPage implements OnInit {
         //console.log("result",this.result);
         //this.loadingService.dismiss();
         //console.log("afterrrrrrrrrrrr");
-        
+
       },
       error => {
         console.log("error::::" + error);
         //this.loadingService.dismiss();
-       
+
         this.toasterService.showToast(error.error.msg, 2000)
 
       }
     )
   }
-  
 
-  getItems(ev: any,item_val:any) {
+
+  getItems(ev: any, item_val: any) {
     // set val to the value of the searchbar
     var val;
-    if(item_val!=''){
-       val = item_val;
+    if (item_val != '') {
+      val = item_val;
+      console.log('val', val)
+      //this.modalService.closeModal();
+      //this.router.navigateByUrl('/products/product-list');
     }
-    else{
-       val = ev.target.value;
+    else {
+      val = ev.target.value;
     }
-    
+
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.isItemAvailable = true;
-      console.log('val',val)
-      console.log('this.result',this.result)
-      this.search_items = this.result.filter((item) => {
-        console.log('item.name',item.name)
-        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-      console.log('this.search_items',this.search_items)
+      console.log('val', val)
+      console.log('this.result', this.result)
+      this.search_items = this.result
+      // this.search_items = this.result.filter((item) => {
+      //   console.log('item.name', item.name)
+      //   return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      // })
+      console.log('this.search_items', this.search_items)
     }
   }
-  searchProduct(item){
-    console.log('item',item)
+  searchProduct(item) {
+    console.log('item', item)
     this.modalService.closeModal()
     this.router.navigateByUrl('/products/product-single/' + item.id);
 
   }
   start() {
     console.log('sdsdsdsdds')
+    this.isItemAvailable = true;
     this.speechRecognition.startListening()
       .subscribe(
         (matches: Array<string>) => {
-          console.log('matches', matches)
-          this.getItems('',matches[0])
+          //console.log('matches', matches)
+          return this.getItems('', matches[0])
+
+          //return this.router.navigateByUrl('/home');
+          //console.log('after', this.search_items)
         },
         (onerror) => console.log('error:', onerror)
+
       )
   }
 
