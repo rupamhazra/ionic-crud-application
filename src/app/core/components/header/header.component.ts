@@ -22,9 +22,7 @@ export class HeaderComponent implements OnInit {
     public events2: Events,
     private storage: Storage,
     public modalService: ModalService,
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     console.log("current Link", this.router.url);

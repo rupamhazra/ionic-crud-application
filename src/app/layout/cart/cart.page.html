@@ -24,7 +24,7 @@
                   </ion-card-header>
                   <ion-card-content no-padding>
                       <ion-select  class="_c_select" placeholder="Qty." (ionChange)="changeQty(item.id,$event)">
-                        <ion-select-option value="{{i}}" [selected] = "i==1" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</ion-select-option>
+                        <ion-select-option value="{{i}}" [selected] = "i==item.cart_qty" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</ion-select-option>
                       </ion-select>
                   </ion-card-content>
                 </ion-col>

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
@@ -25,12 +26,14 @@ export class CartPage implements OnInit {
 
   ngOnInit() {
     console.log('medie_url', this.media_url)
+    this.getCartData();
+  }
+  getCartData(){
     this.storage.get('allProductDetailsInCart').then((val) => {
       console.log('val', val)
       if (val) {
         this.products_exits_on_cart = true
         this.productList = val
-
         val.forEach(element => {
           console.log('element', element.unit_price)
           this.totalPrice = parseFloat(this.totalPrice) + parseFloat(element.unit_price)
@@ -43,6 +46,23 @@ export class CartPage implements OnInit {
         this.storage.remove("allProductDetailsInCart");
       }
     });
+  }
+  changeQty(product_id,event) {
+    //this.totalPrice =  0.00
+    console.log('this',event.detail.value)
+    console.log('product_id', product_id)
+    console.log('this.productList',this.productList)
+    this.productList.forEach(element => {
+      if (element.id == product_id){
+          let qty = parseInt(event.detail.value) - 1;
+          this.totalPrice = parseFloat(this.totalPrice) + (parseFloat(element.unit_price)*qty)
+      }
+      console.log('element', element)
+      
+      //this.eachProductPrice = element.unit_price
+    });
+    //this.productDetailsAdd.push(this.productDetails)
+    //this.storage.set("allProductDetailsInCart",this.productDetailsAdd);
   }
   removeFromCartEvent(product_id: BigInteger) {
     console.log('this.productList.length', this.productList.length)
@@ -71,18 +91,5 @@ export class CartPage implements OnInit {
   placeOrderEvent() {
     console.log('placeOrderEvent')
   }
-  changeQty(product_id,event) {
-    //this.totalPrice =  0.00
-    console.log('this',event.detail.value)
-    console.log('product_id', product_id)
-    this.productList.forEach(element => {
-      if (element.id == product_id){
-          var qty = parseInt(event.detail.value) - 1;
-          this.totalPrice = parseFloat(this.totalPrice) + (parseFloat(element.unit_price)*qty)
-      }
-      console.log('element', element)
-      
-      //this.eachProductPrice = element.unit_price
-    });
-  }
+  
 }

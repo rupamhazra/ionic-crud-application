@@ -100,10 +100,12 @@ export class ProductSinglePage implements OnInit {
     this.router.navigateByUrl('/products/product-single-zoom/'+id);
   }
   addToCartEvent(){
+    this.productDetails['cart_qty'] = 1
     this.storage.get('allProductDetailsInCart').then((val) => {
       if(val) 
       {
         console.log('if val',val)
+        
         val.push(this.productDetails);
         console.log('this.allProductDetailsInCart',val)
         this.storage.set("allProductDetailsInCart",val);
@@ -113,10 +115,10 @@ export class ProductSinglePage implements OnInit {
       else
       {
         console.log('else val',val)
-        console.log('this.productDetails',this.productDetails)
+        //this.productDetails['cart_qty'] = 1
+        console.log('this.productDetails after',this.productDetails)
         this.productDetailsAdd.push(this.productDetails)
         this.storage.set("allProductDetailsInCart",this.productDetailsAdd);
-        //this.storage.set('product_count',1)
         this.events1.publish('showProductCountOnCart', 1);
       }
       this.add_to_cart_btn_visible = false
